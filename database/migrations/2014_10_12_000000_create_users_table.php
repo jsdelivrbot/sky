@@ -28,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('inside_password');
             $table->integer('state_id')->default(1);
             $table->string('city');
-            $table->string('address');
             $table->string('national_id');
             $table->integer('birth_date');
             $table->string('beneficiary');

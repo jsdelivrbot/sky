@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\User_address;
 use Illuminate\Database\Seeder;
 use PragmaRX\Countries\Package\Countries;
 
@@ -13,25 +14,28 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Ahmed',
-            'email' => 'Ahmed@gmail.com',
-            'password' => Hash::make(123456),
-            'middle_name' => 'Tarek',
-            'last_name' => 'Elmra8y',
-            'user_name' => 'ahmed',
-            'inside_password' => Hash::make(123456),
-            'state_id' => 1,
-            'city' => 'City',
-            'address' => 'address',
-            'national_id' => 123456789,
-            'birth_date' => strtotime(time()),
-            'beneficiary' => 'Ahmed',
-            'unique_id' => rand(99999, 999999),
-            'parent_id' => 1,
-            'position' => 1,
-            'phone' => '01146568373',
+        for ($i = 1; $i < 25; $i++) {
+            $user= User::create([
+                'name' => 'Ahmed'.$i,
+                'email' => 'Ahmed@gmail.com'.$i,
+                'password' => Hash::make(123456),
+                'middle_name' => 'Tarek',
+                'last_name' => 'Elmra8y',
+                'user_name' => 'ahmed'.$i,
+                'inside_password' => Hash::make(123456),
+                'state_id' => 1,
+                'city' => 'City',
+                'national_id' => 123456789,
+                'birth_date' => strtotime(time()),
+                'beneficiary' => 'Ahmed',
+                'unique_id' => $i,
+                'parent_id' => $i,
+                'position' => rand(1,2),
+                'phone' => '01146568373',
+            ]);
+            User_address::create(['user_id' => $user->id, 'address' => 'address 1']);
+        }
 
-        ]);
+
     }
 }

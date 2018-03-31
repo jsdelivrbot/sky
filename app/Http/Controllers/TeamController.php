@@ -7,6 +7,7 @@ use App\Country;
 use App\Product;
 use App\Sub_categoty;
 use App\User;
+use App\User_address;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,9 @@ class TeamController extends Controller
     {
         $countries = Country::all();
         $categories = Category::all();
-        return view('site.team', compact('countries', 'categories'));
+        $user = auth()->user();
+
+        return view('site.team', compact('countries', 'user', 'categories'));
     }
 
     public function store(Request $request)
@@ -36,7 +39,7 @@ class TeamController extends Controller
                 'success' => 'no',
             ], 200);
         } else {
-            User::create([
+            $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
@@ -46,7 +49,6 @@ class TeamController extends Controller
                 'inside_password' => Hash::make($data['inside_password']),
                 'state_id' => $data['state_id'],
                 'city' => $data['city'],
-                'address' => $data['address'],
                 'national_id' => $data['national_id'],
                 'birth_date' => strtotime($data['birth_date']),
                 'beneficiary' => $data['beneficiary'],
@@ -59,6 +61,8 @@ class TeamController extends Controller
                 'user_status_id' => 1,
 
             ]);
+            User_address::create(['user_id' => $user->id, 'address' => $data['address']]);
+
         }
         return redirect()->back();
     }

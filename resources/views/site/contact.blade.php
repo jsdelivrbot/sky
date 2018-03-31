@@ -38,12 +38,12 @@ Fill in this form and we will get back to you as soon as possible.</p>
                       <div class="logregform">
                         <div class="feildcont">
         
-            				<form role="form" class="clearfix">
-                            	
+            				<form action="{{url("contact")}}" method="post" role="form" class="clearfix">
+                            	@csrf
                             	<div >
                                 <label>Name <em>*</em></label>
                                   <div class="form-group clearfix">
-                                    <input type="text" class="effect-9 form-control" >
+                                    <input required name="name" type="text" class="effect-9 form-control" >
                                     <span class="focus-border"><i></i></span>
                                   </div>  
                                 </div>
@@ -52,14 +52,14 @@ Fill in this form and we will get back to you as soon as possible.</p>
                                 <div >
             					<label>Email <em>*</em></label>
                                 <div class="form-group clearfix">
-                                <input type="email" class="effect-9 form-control">
+                                <input required name="email" type="email" class="effect-9 form-control">
                                 <span class="focus-border"><i></i></span>
                                 </div>
                                 </div>
                                 <div >
                                 <label>Mobile <em>*</em></label>
                                 <div class="form-group clearfix">
-                                    <input type="text" class="effect-9 form-control">
+                                    <input required name="mobile" type="text" class="effect-9 form-control">
                                     <span class="focus-border"><i></i></span>
                                 </div>    
                                 </div>
@@ -67,7 +67,7 @@ Fill in this form and we will get back to you as soon as possible.</p>
                                 <div >
                                 <label>Message <em>*</em></label>
                                 <div class="form-group clearfix">
-                                 <textarea rows="3" name="msg" class="effect-9 form-control"></textarea>
+                                 <textarea required rows="3" name="message" class="effect-9 form-control"></textarea>
                                   <span class="focus-border"><i></i></span>
                                 </div>    
                                 </div>

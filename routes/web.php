@@ -7,6 +7,15 @@ Route::post('/products/filter', 'ProductsController@filter');
 Route::get('/products', 'ProductsController@index');
 Route::post('/products', 'ProductsController@products');
 Route::post('/products/search', 'ProductsController@search');
+Route::get('/about', 'HomeController@about');
+Route::get('/infinity', 'HomeController@infinity');
+Route::get('/founders', 'HomeController@founders');
+Route::get('/members_events', 'HomeController@members_events');
+Route::get('/processes', 'HomeController@processes');
+Route::get('/contact', 'HomeController@contact');
+Route::post('/contact', 'HomeController@add_contact');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/team', 'TeamController@index');

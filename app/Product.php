@@ -16,6 +16,7 @@ class Product extends Model
         'commission',
         'quantity',
         'main_image',
+        'published',
         'product_type_id',
         'sub_category_id',
     ];

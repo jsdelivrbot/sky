@@ -30,15 +30,16 @@ class ProductsController extends Controller
             if (!$request->product_type_id == 3)
                 $products = $products->where('product_type_id', $request->product_type_id);
         }
-        if ($request->sub_category_id) {
-            $products = $products->whereIn('sub_category_id', $request->sub_category_id);
-        } else {
+        if ($request->category_id) {
             $sub_categories = $sub_categories->whereIn('category_id', $request->category_id)
                 ->pluck('id')->toArray();
             $products = $products = Product::whereIn('sub_category_id', $sub_categories);
+        } elseif ($request->sub_category_id) {
+            $products = $products->whereIn('sub_category_id', $request->sub_category_id);
         }
 
         $products = $products->get();
+
         return view('site.index', compact('countries', 'products', 'categories'));
     }
 

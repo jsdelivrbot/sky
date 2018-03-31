@@ -4,14 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset("assets/")}}/css/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="{{asset("assets/")}}/css/aslider.min.css">
     <link rel="stylesheet" href="{{asset("assets/")}}/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="{{asset("assets/")}}/css/font-awesome.css">
+    <link rel="shortcut icon" href="{{asset("assets/img/logo.png")}}">
+
     @yield('css')
 
 
@@ -30,18 +31,18 @@
                     <button id="primary-nav-button" type="button">Menu</button>
                     <nav id="primary-nav" class="dropdown cf">
                         <ul class="dropdown menu clearfix">
-                            <li class="active"><a href="{{asset("assets/")}}/index.html">Home</a></li>
-                            <li><a href="{{asset("assets/")}}/about.html">About us</a></li>
-                            <li><a href="{{asset("assets/")}}/process-proced.html">Processes &amp; Procedures</a></li>
+                            <li class="active"><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/about')}}">About us</a></li>
+                            <li><a href="{{url('/processes')}}">Processes &amp; Procedures</a></li>
 
-                            <li><a href="{{asset("assets/")}}/#">Infinity</a>
+                            <li><a href="#">Infinity</a>
                                 <ul class="sub-menu">
-                                    <li><a href="{{asset("assets/")}}/infinity.html">What’s Infinity</a></li>
-                                    <li><a href="{{asset("assets/")}}/infinity-founders.html">Infinity Founders</a></li>
-                                    <li><a href="{{asset("assets/")}}/events-members.html">Our Events</a></li>
+                                    <li><a href="{{url('/infinity')}}">What’s Infinity</a></li>
+                                    <li><a href="{{url('/founders')}}">Infinity Founders</a></li>
+                                    <li><a href="{{url('/members_events')}}">Our Events</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{asset("assets/")}}/contact.html">Contact us</a></li>
+                            <li><a href="{{url('/contact')}}">Contact us</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -107,6 +108,231 @@
 
 
 <!--modals-->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-11 col-xs-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <ul class="nav panel-tabs">
+                                    <li class="active"><a href="#tab1" data-toggle="tab">Login</a></li>
+                                    <li><a href="#tab2" data-toggle="tab">Register</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="panel-body" style="max-height: 600px;overflow-y: scroll">
+                                <h4 id="auth_message" class="color_danger text-center"></h4>
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" id="tab1">
+
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <div class="form-group">
+
+                                                <input value="{{ old('user_name') }}" name="user_name" type="text"
+                                                       class="form-control" placeholder="User Name">
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input name="password" type="password" class="form-control"
+                                                       placeholder="Password">
+
+                                            </div>
+
+                                            <div class="checkbox">
+                                                <label class="chk">
+                                                    <input name="remember"
+                                                           {{ old('remember') ? 'checked' : '' }} type="checkbox">
+                                                    Remember Me
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                            </div>
+                                            <button type="submit" class="btn nwbtn">Sign in</button>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab2">
+
+                                        <form id="register_form" method="POST" action="{{ route('register') }}">
+                                            @csrf
+
+                                            <div class="form-group col-sm-6 lft">
+
+                                                <input required id="parent_id" maxlength="6"
+                                                       value="{{ old('parent_id') }}"
+                                                       name="parent_id"
+                                                       type="text"
+                                                       class="form-control" placeholder="Upline ID">
+                                            </div>
+
+                                            <div class="form-group col-sm-6 lft">
+                                                <div class="form-control" style="height: 35px;">
+                                                    <div class="pull-left">
+                                                        <label for="position">Left</label>
+                                                        <input checked required value="1" name="position"
+                                                               type="radio">
+
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <label for="position">Right</label>
+                                                        <input required value="2" id="position" name="position"
+                                                               type="radio">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group col-md-4  lft">
+
+                                                <input required id="name" value="{{ old('name') }}" name="name"
+                                                       type="text"
+                                                       class="form-control" placeholder="First Name">
+                                            </div>
+                                            <div class="form-group col-md-4 rght1">
+
+                                                <input required id="middle_name" value="{{ old('mid_name') }}"
+                                                       name="middle_name"
+                                                       type="text"
+                                                       class="form-control" placeholder="Middle Name">
+                                            </div>
+                                            <div class="form-group col-md-4  rght">
+
+                                                <input required id="last_name" value="{{ old('last_name') }}"
+                                                       name="last_name"
+                                                       type="text"
+                                                       class="form-control" placeholder="Last Name">
+                                            </div>
+
+                                            <div class="form-group col-md-4  lft">
+
+                                                <select required id="country" class="form-control selecty"
+                                                        name="country">
+                                                    <option value="0" disabled selected>Country</option>
+                                                    @foreach($countries as $country)
+                                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4 rght1">
+
+                                                <select required id="state" class="form-control selecty"
+                                                        name="state_id">
+
+                                                    <option value="0" disabled selected>State</option>
+                                                    @foreach($countries as $country)
+                                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4  rght">
+
+                                                <input required id="city" name="city" type="text" class="form-control"
+                                                       placeholder="city">
+                                            </div>
+
+                                            <div class="form-group nw-pd">
+
+                                                <input required id="address" name="address" type="text"
+                                                       class="form-control"
+                                                       placeholder="Address">
+                                            </div>
+
+                                            <div class="form-group col-md-6  lft">
+
+                                                <input required id="national_id" maxlength="10" name="national_id"
+                                                       type="text"
+                                                       class="form-control"
+                                                       placeholder="National ID">
+                                            </div>
+                                            <div class="form-group col-md-6 rght">
+
+                                                <input required style="line-height: 1" name="birth_date" type="date"
+                                                       class="form-control"
+                                                       id="datepicker"
+                                                       placeholder="Date of birth">
+                                            </div>
+
+                                            <div class="form-group col-md-6  lft">
+
+                                                <input required id="phone" maxlength="10" name="phone" type="text"
+                                                       class="form-control"
+                                                       placeholder="Phone">
+                                            </div>
+                                            <div class="form-group col-md-6 rght">
+
+                                                <input required id="email" name="email" type="email"
+                                                       class="form-control"
+                                                       placeholder="E-mail">
+                                            </div>
+
+                                            <div class="form-group col-md-6  lft">
+
+                                                <input required id="user_name" name="user_name" type="text"
+                                                       class="form-control"
+                                                       placeholder="Username">
+                                            </div>
+                                            <div class="form-group col-md-6 rght">
+
+                                                <input required id="beneficiary" name="beneficiary" type="text"
+                                                       class="form-control"
+                                                       placeholder="Beneficiary">
+                                            </div>
+
+                                            <div class="form-group col-md-6  lft">
+
+                                                <input required id="password" maxlength="20" name="password"
+                                                       type="password"
+                                                       class="form-control"
+                                                       placeholder="Password">
+                                            </div>
+                                            <div class="form-group col-md-6 rght">
+
+                                                <input required id="password_confirmation" maxlength="20"
+                                                       name="password_confirmation"
+                                                       type="password" class="form-control"
+                                                       placeholder="Re-Password">
+                                            </div>
+
+                                            <div class="form-group col-md-6  lft">
+
+                                                <input required id="inside_password" maxlength="20"
+                                                       name="inside_password"
+                                                       type="password" class="form-control"
+                                                       placeholder="Inside Password">
+                                            </div>
+                                            <div class="form-group col-md-6 rght">
+
+                                                <input required id="inside_password_confirmation"
+                                                       name="inside_password_confirmation" maxlength="20"
+                                                       type="password"
+                                                       class="form-control"
+                                                       placeholder="Re-Inside Password">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="checkbox">
+                                                <label class="chk">
+                                                    <input id="terms" type="checkbox"> I accept the <a href="#"
+                                                                                                       target="_self">Terms
+                                                        of Use.</a>
+                                                </label>
+                                            </div>
+                                            <button id="submit_btn" type="submit" class="btn nwbtn">Sign up</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="squarespaceModal-4" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -194,7 +420,9 @@
                             <div class="col-md-12 col-xs-12">
                                 <h3 class="ylw">Account Information:</h3>
                                 <p><strong>Name:</strong> <span>{{auth()->user()->name}}</span></p>
-                                <p><strong>Address:</strong> <span>{{auth()->user()->address}}</span></p>
+                                <p><strong>Address:</strong>
+                                    <span>@if(auth()->user()->addresses){{auth()->user()->addresses->first()->address}}@endif</span>
+                                </p>
                                 <p><strong>Phone:</strong> <span>{{auth()->user()->phone}}</span></p>
                                 <p><strong>Date of Birth:</strong>
                                     <span>{{date('Y-m-d',auth()->user()->birth_date)}}</span>
@@ -295,6 +523,7 @@
 <script src="{{asset("assets/")}}/js/bootstrap.js" type="text/jscript"></script>
 <script src="{{asset("assets/")}}/js/aslider.min.js"></script>
 <script src="{{asset("assets/")}}/js/menu.js"></script>
+<script src="{{asset("assets/")}}/js/jquery.nicescroll.min.js"></script>
 <script src="{{asset("assets/")}}/js/scroll.js"></script>
 <script src="{{asset("assets/")}}/js/register.js"></script>
 <script src="{{asset("assets/")}}/js/style.js"></script>
@@ -302,7 +531,7 @@
 
 <script>
 
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
 
         $('#myCarousel').carousel({
             interval: 5000
@@ -311,7 +540,7 @@
         $('#carousel-text').html($('#slide-content-0').html());
 
         //Handles the carousel thumbnails
-        $('[id^=carousel-selector-]').click( function(){
+        $('[id^=carousel-selector-]').click(function () {
             var id = this.id.substr(this.id.lastIndexOf("-") + 1);
             var id = parseInt(id);
             $('#myCarousel').carousel(id);
@@ -321,23 +550,22 @@
         // When the carousel slides, auto update the text
         $('#myCarousel').on('slid.bs.carousel', function (e) {
             var id = $('.item.active').data('slide-number');
-            $('#carousel-text').html($('#slide-content-'+id).html());
+            $('#carousel-text').html($('#slide-content-' + id).html());
         });
     });
 
 
 </script>
-<script src="js/magnific-popup.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+<script src="{{asset("assets/")}}/js/magnific-popup.js" type="text/javascript"></script>
 <!--tabs-->
 <script>
 
     $('.tabgroup > div').hide();
     $('.tabgroup > div:first-of-type').show();
-    $('.tabs a').click(function(e){
+    $('.tabs a').click(function (e) {
         e.preventDefault();
         var $this = $(this),
-            tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+            tabgroup = '#' + $this.parents('.tabs').data('tabgroup'),
             others = $this.closest('li').siblings().children('a'),
             target = $this.attr('href');
         others.removeClass('active');
@@ -349,10 +577,10 @@
 
     $('.tabgroup1 > div').hide();
     $('.tabgroup1 > div:first-of-type').show();
-    $('.tabs a').click(function(e){
+    $('.tabs a').click(function (e) {
         e.preventDefault();
         var $this = $(this),
-            tabgroup = '#'+$this.parents('.tabs').data('tabgroup1'),
+            tabgroup = '#' + $this.parents('.tabs').data('tabgroup1'),
             others = $this.closest('li').siblings().children('a'),
             target = $this.attr('href');
         others.removeClass('active');
@@ -364,10 +592,10 @@
 
     $('.tabgroup2 > div').hide();
     $('.tabgroup2 > div:first-of-type').show();
-    $('.tabs a').click(function(e){
+    $('.tabs a').click(function (e) {
         e.preventDefault();
         var $this = $(this),
-            tabgroup = '#'+$this.parents('.tabs').data('tabgroup2'),
+            tabgroup = '#' + $this.parents('.tabs').data('tabgroup2'),
             others = $this.closest('li').siblings().children('a'),
             target = $this.attr('href');
         others.removeClass('active');
@@ -387,6 +615,7 @@
             .find(".more-less")
             .toggleClass('fa-minus-circle fa-plus-circle');
     }
+
     $('.panel-group').on('hidden.bs.collapse', toggleIcon);
     $('.panel-group').on('shown.bs.collapse', toggleIcon);
 </script>

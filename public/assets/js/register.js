@@ -7,8 +7,8 @@ $(document).ready(function () {
     valid_length("address", 10);
     valid_length("city", 3);
     valid_length("beneficiary", 3);
-    valid_length("national_id", 10);
     valid_national_id();
+    valid_parent_id();
     valid_phone();
     valid_email();
     valid_password();
@@ -42,11 +42,36 @@ $(document).ready(function () {
 
     }
 
+    function valid_parent_id() {
+        $("#register_form #parent_id").on('input', function (e) {
+            if ($(this).val().match(/^\d+$/)) {
+                if ($(this).val().length > 5) {
+                    $(this).css('border-color', '#08bb90');
+                    $("#register_form #submit_btn").prop('disabled', false);
+                }
+                else {
+                    $(this).css('border-color', '#9c488d');
+                    $("#register_form #submit_btn").prop('disabled', true);
+                }
+            }
+            else {
+                $(this).css('border-color', '#9c488d');
+                $("#register_form #submit_btn").prop('disabled', true);
+            }
+        });
+    }
+
     function valid_national_id() {
         $("#register_form #national_id").on('input', function (e) {
             if ($(this).val().match(/^\d+$/)) {
-                $(this).css('border-color', '#08bb90');
-                $("#register_form #submit_btn").prop('disabled', false);
+                if ($(this).val().length > 9) {
+                    $(this).css('border-color', '#08bb90');
+                    $("#register_form #submit_btn").prop('disabled', false);
+                }
+                else {
+                    $(this).css('border-color', '#9c488d');
+                    $("#register_form #submit_btn").prop('disabled', true);
+                }
             }
             else {
                 $(this).css('border-color', '#9c488d');

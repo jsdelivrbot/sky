@@ -27,7 +27,6 @@ class User extends Authenticatable
         'inside_password',
         'state_id',
         'city',
-        'address',
         'national_id',
         'birth_date',
         'beneficiary',
@@ -56,5 +55,13 @@ class User extends Authenticatable
     public function wallet()
     {
         return $this->hasMany(Wallet::class, 'user_id');
+    }
+    public function addresses()
+    {
+        return $this->hasMany(User_address::class, 'user_id');
+    }
+    public function downLines()
+    {
+        return $this->hasMany(User::class, 'parent_id','unique_id');
     }
 }
