@@ -52,4 +52,29 @@ class ProductsController extends Controller
         $item->delete();
         return redirect('/admin/products');
     }
+
+    public function filter(Request $request)
+    {
+        $items = Product::where('id', '!=', 0);
+
+        if ($request->key) {
+            $items->where('name', 'LIKE', '%' . $request->key . '%');
+        }
+        if ($request->from and $request->to) {
+            $items->whereBetween('price', [$request->from, $request->to]);
+        }
+        if ($request->type) {
+            $items->where('product_type_id', $request->type);
+        }
+        if ($request->published == 1) {
+            $items->where('published', 1);
+        }
+        if ($request->limit == 1) {
+            $items->where('quantity', '<', $request->limit);
+        }
+
+        $items = $items->paginate(10);
+        return view('admin.products.index', compact('items'));
+    }
+
 }

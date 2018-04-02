@@ -4,13 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Product_type extends Model
 {
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'email',
-        'phone',
-        'message',
     ];
 }

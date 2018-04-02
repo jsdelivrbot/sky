@@ -15,13 +15,47 @@ use Illuminate\Support\Facades\Validator;
 class TeamController extends Controller
 {
 
+    private $left = 0, $left_qualified = 0, $right = 0, $right_qualified = 0;
+
     public function index()
     {
         $countries = Country::all();
         $categories = Category::all();
         $user = auth()->user();
+        $this->getChildren($user->unique_id);
+        $left = $this->left;
+        $left_qualified = $this->left_qualified;
+        $right = $this->right;
+        $right_qualified = $this->right_qualified;
+        return view('site.team', compact('countries',
+            'user',
+            'categories',
+            'right',
+            'right_qualified',
+            'left',
+            'left_qualified'
+        ));
+    }
 
-        return view('site.team', compact('countries', 'user', 'categories'));
+    public function getChildren($unique_id)
+    {
+        $users = User::where('parent_id', $unique_id)->get();
+        foreach ($users as $user) {
+            if ($user->position == 1) {
+                $this->left++;
+                if ($user->qualified == 1)
+                    $this->left_qualified++;
+            }
+            if ($user->position == 1) {
+                $this->right++;
+                if ($user->qualified == 1)
+                    $this->right_qualified++;
+            }
+
+            return $this->getChildren($user->unique_id);
+        }
+
+
     }
 
     public function store(Request $request)
@@ -53,8 +87,8 @@ class TeamController extends Controller
                 'birth_date' => strtotime($data['birth_date']),
                 'beneficiary' => $data['beneficiary'],
                 'unique_id' => rand(99999, 999999),
-                'parent_id' => auth()->user()->id,
-                'position' => $data['position'],
+                'parent_id' => $data['parent_id_input'],
+                'position' => $data['position_input'],
                 'phone' => $data['phone'],
                 'e_pin_balance' => 0,
                 'e_money_balance' => 0,
@@ -65,6 +99,29 @@ class TeamController extends Controller
 
         }
         return redirect()->back();
+    }
+
+    public function search_user_id(Request $request)
+    {
+        $user = User::where('unique_id', $request->unique_id)->first();
+        if ($user) {
+            $countries = Country::all();
+            $categories = Category::all();
+            $this->getChildren($user->unique_id);
+            $left = $this->left;
+            $left_qualified = $this->left_qualified;
+            $right = $this->right;
+            $right_qualified = $this->right_qualified;
+            return view('site.team', compact('countries',
+                'user',
+                'categories',
+                'right',
+                'right_qualified',
+                'left',
+                'left_qualified'
+            ));
+        } else
+            return redirect()->back();
     }
 
 }

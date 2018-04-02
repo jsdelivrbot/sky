@@ -9,7 +9,7 @@
                                                                           alt="SkyMax"></a>
         </div>
         <div class="transf">
-            <a href="{{asset("assets/")}}/#squarespaceModal-5" data-toggle="modal" class="btn tran-btn">Transfer</a>
+            <a href="#squarespaceModal-5" data-toggle="modal" class="btn tran-btn">Transfer</a>
         </div>
         <div class="container">
             <div class="col-md-8 col-md-offset-2">

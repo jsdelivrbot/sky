@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             $table->string('main_image');
             $table->integer('product_type_id');
             $table->integer('sub_category_id');
+            $table->integer('category_id');
+            $table->integer('limit');
             $table->boolean('published');
         });
     }

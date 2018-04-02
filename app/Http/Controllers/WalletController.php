@@ -17,6 +17,7 @@ class WalletController extends Controller
     public function index()
     {
         $id = auth()->user()->id;
+        $countries = Country::all();
         $binary_commission = Commission::where('user_id', $id)
             ->where('commission_type_id', 1)->sum('value');
 
@@ -35,7 +36,8 @@ class WalletController extends Controller
             'direct_commission',
             'store_commission',
             'e_pins',
-            'e_moneys'
+            'e_moneys',
+            'countries'
         ));
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Category;
 use App\Sub_categoty;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class Sub_categoriesController extends Controller
 
     public function create()
     {
-        return view('admin.sub_categories.create');
+        $categories = Category:: all();
+        return view('admin.sub_categories.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -34,7 +36,8 @@ class Sub_categoriesController extends Controller
     public function edit($id)
     {
         $item = Sub_categoty::find($id);
-        return view('admin.sub_categories.edit', compact('item'));
+        $categories = Category:: all();
+        return view('admin.sub_categories.edit', compact('item', compact('categories')));
     }
 
     public function update(Request $request, $id)

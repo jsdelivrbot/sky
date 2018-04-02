@@ -104,7 +104,6 @@
                         <a href="{{url("admin/categories")}}" class="nav-link nav-toggle">
                             <i class="icon-diamond"></i>
                             <span class="title">Categories</span>
-
                         </a>
                     </li>
                     <li class="sub_categories nav-item  ">
@@ -119,11 +118,29 @@
                             <span class="title">Products</span>
                         </a>
                     </li>
+                    <li class="orders nav-item  ">
+                        <a href="{{url('admin/orders')}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Orders</span>
+                        </a>
+                    </li>
+                    <li class="banks nav-item  ">
+                        <a href="{{url('admin/banks')}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Banks</span>
+                        </a>
+                    </li>
+                    <li class="permissions nav-item  ">
+                        <a href="#" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Permissions</span>
+                        </a>
+                    </li>
+
                     <li class="users nav-item  ">
                         <a href="{{url("admin/users")}}" class="nav-link nav-toggle">
                             <i class="icon-diamond"></i>
                             <span class="title">Users</span>
-
                         </a>
 
                     </li>

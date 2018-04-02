@@ -19,16 +19,26 @@ class Product extends Model
         'published',
         'product_type_id',
         'sub_category_id',
+        'category_id',
+        'limit',
     ];
 
     public function sub_category()
     {
-        return $this->hasOne(Sub_categoty::class, 'id', 'sub_category_id');
+        return $this->belongsTo(Sub_categoty::class, 'sub_category_id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function offer()
     {
         return $this->hasOne(Offer::class, 'product_id');
+    }
+    public function product_type()
+    {
+        return $this->belongsTo(Product_type::class, 'product_type_id');
     }
 
 }

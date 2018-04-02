@@ -9,11 +9,11 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bubble font-dark"></i>
-                        <span class="caption-subject font-dark bold uppercase">categories</span>
+                        <span class="caption-subject font-dark bold uppercase">products</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
-                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/categories')}}">
+                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/products')}}">
                                 Back
                             </a>
                         </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="portlet-body form">
 
-                            <form role="form" method="post" action="{{url("/admin/categories/$item->id")}}"
+                            <form role="form" method="post" action="{{url("/admin/products/$item->id")}}"
                                   enctype="multipart/form-data">
                                 @csrf
                                 {{ method_field('PUT') }}
@@ -62,6 +62,6 @@
 
     <script>
         $("#dash").removeClass("active");
-        $(".categories").addClass("open active").css("display", "block");
+        $(".products").addClass("open active").css("display", "block");
     </script>
 @endsection

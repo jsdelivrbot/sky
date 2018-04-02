@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->string('phone');
             $table->string('address');
-            $table->integer('order_status_id');
+            $table->integer('order_status_id')->default(1);
             $table->timestamps();
         });
     }

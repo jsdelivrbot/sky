@@ -43,8 +43,7 @@ p.simple-card {
   font-weight: bold;
   color: #DE5454; }
 
-.management-hierarchy {
-  background-color: #303840; }
+
   .management-hierarchy > h1 {
     color: #FFF; }
   .management-hierarchy .person {

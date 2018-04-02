@@ -170,28 +170,25 @@
                                     @endif
                                 </h5>
                                 @guest
-                                    <a href="#squarespaceModal" data-toggle="modal"
-                                       class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
+                                <a href="#squarespaceModal" data-toggle="modal"
+                                   class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
                                 @endguest
                                 @auth
-                                    @if(auth()->user()->qualified ==1)
-                                        <a class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                @if(auth()->user()->qualified ==1)
+                                    <a href="#squarespaceModal-order" data-toggle="modal"
+                                       data-product_id="{{$product->id}}"
+                                       class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                @else
+                                    @if($product->product_type_id == 1)
+                                        <a href="#squarespaceModal-order" data-toggle="modal"
+                                           data-product_id="{{$product->id}}"
+                                           class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
                                     @else
-
-                                        @if($product->product_type_id == 1)
-                                            <form method="post" action="{{url('order')}}">
-                                                {{csrf_field()}}
-                                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <button type="submit" class="btn btn-form nwbtn add"><span
-                                                            class="cart"></span> Order
-                                                </button>
-                                            </form>
-                                        @else
-                                            <label class="btn btn-form nwbtn add gray_btn"><span
-                                                        class="cart"></span>
-                                                Order</label>
-                                        @endif
+                                        <label class="btn btn-form nwbtn add gray_btn"><span
+                                                    class="cart"></span>
+                                            Order</label>
                                     @endif
+                                @endif
                                 @endauth
                             </div>
                         @endforeach
@@ -206,5 +203,65 @@
     </div>
 
 @endsection
+@section('js')
+    <script>
+        $('.add').click(function () {
+            id = $(this).data('product_id');
+            $("#product_id_input").val(id);
+        })
+    </script>
+@endsection
+@auth
+<div class="modal fade" id="squarespaceModal-order" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content mymodal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="modal-body ">
+                <div class="wrapper">
 
+                    <section id="first-tab-group2" class="tabgroup2">
+
+
+                        <form method="post" action="{{url("order")}}">
+                            @csrf
+                            <input id="product_id_input" type="hidden" name="product_id" value="">
+                            <div class="clearfix"></div>
+                            <div class="form-group nw-pd">
+                                <select class="form-control" name="address_select">
+                                    @foreach(auth()->user()->addresses as $address)
+                                        <option value="{{$address->address}}">{{$address->address}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="form-group nw-pd">
+                                OR
+                                <input name="address_input" type="text" class="form-control"
+                                       placeholder="address">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group nw-pd">
+                                <input required name="mobile" type="text" class="form-control"
+                                       placeholder="mobile">
+                            </div>
+                            <div class="clearfix"></div>
+                            <button type="submit" class="btn nwbtn">Order</button>
+
+                        </form>
+
+
+                    </section>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@endauth
 

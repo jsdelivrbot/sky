@@ -124,7 +124,7 @@
 
                                 </ul>
                             </div>
-                            <div class="panel-body" style="max-height: 600px;overflow-y: scroll">
+                            <div class="panel-body" >
                                 <h4 id="auth_message" class="color_danger text-center"></h4>
                                 <div class="tab-content">
 
@@ -172,17 +172,14 @@
 
                                             <div class="form-group col-sm-6 lft">
                                                 <div class="form-control" style="height: 35px;">
-                                                    <div class="pull-left">
-                                                        <label for="position">Left</label>
-                                                        <input checked required value="1" name="position"
-                                                               type="radio">
 
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <label for="position">Right</label>
-                                                        <input required value="2" id="position" name="position"
-                                                               type="radio">
-                                                    </div>
+                                                    <label style="margin-right: 25px" class="radio-inline">
+                                                        <input style="margin-top:7px" checked type="radio" value="1" name="position">Left
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input style="margin-top:7px" type="radio" value="2" name="position">Right
+                                                    </label>
+
                                                 </div>
 
                                             </div>

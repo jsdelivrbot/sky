@@ -59,7 +59,7 @@ Fill in this form and we will get back to you as soon as possible.</p>
                                 <div >
                                 <label>Mobile <em>*</em></label>
                                 <div class="form-group clearfix">
-                                    <input required name="mobile" type="text" class="effect-9 form-control">
+                                    <input required name="phone" type="text" class="effect-9 form-control">
                                     <span class="focus-border"><i></i></span>
                                 </div>    
                                 </div>

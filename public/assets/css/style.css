@@ -1853,7 +1853,7 @@ ul.cl-map li.blu {
 
 .icon input[type="text"] {
     border: medium none;
-    height: 40px;
+    height: 55px;
     padding: 5px 14px;
     width: 80%;
     float: left;
@@ -10416,4 +10416,8 @@ ul.cl-map li.blu {
     background: #e9e8e8;
     color: #969c9a;
 
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

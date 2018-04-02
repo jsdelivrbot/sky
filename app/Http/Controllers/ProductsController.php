@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Country;
 use App\Product;
+use App\Product_image;
 use App\Sub_categoty;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,15 @@ class ProductsController extends Controller
             ->get();
         return view('site.index', compact('countries', 'products', 'categories'));
 
+    }
+
+    public function show($id)
+    {
+        $countries = Country::all();
+        $product = Product::find($id);
+        $images = Product_image::where('product_id', $id)->get();
+        $categories = Category::all();
+        return view('site.product', compact('countries', 'product', 'categories', 'images'));
     }
 
 

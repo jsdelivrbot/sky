@@ -9,11 +9,11 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bubble font-dark"></i>
-                        <span class="caption-subject font-dark bold uppercase">categories</span>
+                        <span class="caption-subject font-dark bold uppercase">sub_categories</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
-                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/categories/create')}}">
+                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/sub_categories/create')}}">
                                 Add
                             </a>
                         </div>
@@ -39,7 +39,7 @@
 
                                     <td>
                                         <div class="col-sm-12">
-                                            <a href="{{url("admin/categories/$item->id/edit")}}"
+                                            <a href="{{url("admin/sub_categories/$item->id/edit")}}"
                                                class="edit-modal btn btn-warning label-sm">
                                                 <span class="glyphicon glyphicon-edit"></span> Edit
                                             </a>
@@ -47,7 +47,7 @@
                                         <div class="col-sm-12">
 
                                             <form onsubmit='return ConfirmDelete()' method="post"
-                                                  action="{{url("admin/categories/$item->id")}}">
+                                                  action="{{url("admin/sub_categories/$item->id")}}">
                                                 {{ method_field('DELETE') }}
                                                 {{csrf_field()}}
                                                 <button type="submit" class="delete-modal btn btn-danger label-sm">
@@ -79,7 +79,7 @@
 
     <script>
         $("#dash").removeClass("active");
-        $(".categories").addClass("open active").css("display", "block");
+        $(".sub_categories").addClass("open active").css("display", "block");
     </script>
 
 @endsection

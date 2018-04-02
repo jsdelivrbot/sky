@@ -9,12 +9,12 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bubble font-dark"></i>
-                        <span class="caption-subject font-dark bold uppercase">categories</span>
+                        <span class="caption-subject font-dark bold uppercase">الخدمات</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
-                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/categories')}}">
-                                Back
+                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('services')}}">
+                                رجوع
                             </a>
                         </div>
                     </div>
@@ -25,32 +25,33 @@
                         <div class="portlet-title">
                             <div class="caption font-red-sunglo">
                                 <i class="icon-user font-red-sunglo"></i>
-                                <span class="caption-subject bold uppercase"> Edit </span>
+                                <span class="caption-subject bold uppercase"> اضف </span>
                             </div>
 
                         </div>
                         <div class="portlet-body form">
 
-                            <form role="form" method="post" action="{{url("/admin/categories/$item->id")}}"
+                            <form role="form" method="post" action="{{url("/admin/categories")}}"
                                   enctype="multipart/form-data">
                                 @csrf
-                                {{ method_field('PUT') }}
+
 
                                 <div class="form-body">
 
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="name" class="form-control"
-                                               id="form_control_1" value="{{$item->name}}"
+                                               id="form_control_1"
                                                placeholder="name ">
                                         <label for="form_control_1 input-lg"> name</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
 
-                                    <button type="submit" class="btn blue">Edit</button>
+                                    <button type="submit" class="btn blue">Add</button>
                                 </div>
                             </form>
                         </div>
+
 
                     </div>
                 </div>

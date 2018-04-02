@@ -40,6 +40,18 @@ class AjaxController extends Controller
     {
         $products = Product::all();
         return $products;
+    }
+
+    public function getDownLines(Request $request)
+    {
+        $LeftDownLine = User::where('parent_id', $request->unique_id)
+            ->where('position', 1)->first();
+        $RightDownLine = User::where('parent_id', $request->unique_id)
+            ->where('position', 2)->first();
+        return response()->json([
+            'LeftDownLine' => $LeftDownLine,
+            'RightDownLine' => $RightDownLine
+        ], 200);
 
     }
 }

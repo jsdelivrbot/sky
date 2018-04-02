@@ -26,17 +26,17 @@
                         <ul class="cl-map">
                             <li class="gry"><i class="fa fa-circle"></i> Not Qualified</li>
                             <li class="blck"><i class="fa fa-circle"></i> Qualified</li>
-                            <li class="blu"><i class="fa fa-circle"></i> Active</li>
 
                         </ul>
                     </div>
                     <div class="col-md-3 col-sm-5 col-xs-12 pull-right">
                         <div id="srch">
                             <div class="search-bar">
-                                <form class="icon">
-
-                                    <input type="text" placeholder="Search for user by ID">
+                                <form action="{{url("search_user_id")}}" method="post" class="icon">
+                                    @csrf
+                                    <input name="unique_id" type="text" placeholder="Search for user by ID">
                                     <input type="submit" value="Search">
+
                                 </form>
 
                             </div>
@@ -51,52 +51,235 @@
             <div class="container">
                 <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
                     <div class="col-md-5 col-xs-12 col-sm-6 text-center no-pd">
-                        <h3>Total Left = <span>210 IR’s</span></h3>
-                        <h3>Qualified = <span>210 IR’s</span></h3>
+                        <h3>Total Left = <span>{{$left}} IR’s</span></h3>
+                        <h3>Qualified = <span>{{$left_qualified}} IR’s</span></h3>
                     </div>
 
                     <div class="col-md-5 col-xs-12 col-sm-6 text-center no-pd">
-                        <h3>Total Right = <span>210 IR’s</span></h3>
-                        <h3>Qualified = <span>210 IR’s</span></h3>
+                        <h3>Total Right = <span>{{$right}} IR’s</span></h3>
+                        <h3>Qualified = <span>{{$right_qualified}} IR’s</span></h3>
                     </div>
 
                 </div>
-                <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="col-xs-12 ">
 
-                    <div class="col-md-6 col-xs-12 col-sm-12 no-pd col-md-offset-2">
+                    <section class="management-hierarchy">
 
-                        <section class="management-hierarchy">
+                        <div class="hv-container">
+                            <div class="hv-wrapper">
 
-                            <div class="hv-container">
-                                <div class="hv-wrapper">
+                                <!-- Key component -->
+                                <div class="hv-item">
 
-                                    <!-- Key component -->
-                                    <div class="hv-item">
+                                    <div class="hv-item-parent">
+                                        <div class="person">
+                                            <img src="https://pbs.twimg.com/profile_images/762654833455366144/QqQhkuK5.jpg"
+                                                 alt="">
+                                            <p class="name">
+                                                {{$user->name}}
+                                            </p>
+                                        </div>
+                                    </div>
 
-                                        <div class="hv-item-parent">
-                                            <div class="person">
-                                                <img src="https://pbs.twimg.com/profile_images/762654833455366144/QqQhkuK5.jpg"
-                                                     alt="">
-                                                <p class="name">
-                                                    Ziko Sichi <b>/ CEO</b>
-                                                </p>
+                                    <div class="hv-item-children">
+                                        @if($user->LeftDownLine and  $user->RightDownLine)
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="person"
+                                                             data-unique_id="{{$user->LeftDownLine->unique_id}}">
+                                                            <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                                                                 alt="">
+                                                            <p class="name">
+                                                                {{$user->LeftDownLine->name}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hv-item-children">
+
+                                                        <div class="hv-item-child">
+                                                            <!-- Key component -->
+                                                            <div class="hv-item">
+
+                                                                <div class="hv-item-parent">
+
+                                                                    <div class="circle">
+                                                                        <h4><a class="add" href="#squarespaceModal-7"
+                                                                               data-toggle="modal"
+                                                                               data-unique_id="{{$user->unique_id}}"
+                                                                               data-position="1"><i
+                                                                                        class="fa fa-plus"></i></a>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <!-- Key component -->
+                                                            <div class="hv-item">
+
+                                                                <div class="hv-item-parent">
+
+                                                                    <div class="circle">
+                                                                        <h4><a class="add" href="#squarespaceModal-7"
+                                                                               data-toggle="modal"
+                                                                               data-unique_id="{{$user->unique_id}}"
+                                                                               data-position="2"><i
+                                                                                        class="fa fa-plus"></i>
+                                                                            </a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
 
-                                        <div class="hv-item-children">
-                                            @foreach ($user->downLines as $downLine)
-                                                @include('partials', $downLine)
-                                            @endforeach
-                                        </div>
+                                                    <div class="hv-item-parent">
+                                                        <div class="person"
+                                                             data-unique_id="{{$user->RightDownLine->unique_id}}">
+                                                            <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                                                                 alt="">
+                                                            <p class="name">
+                                                                {{$user->RightDownLine->name}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hv-item-children">
+
+                                                        <div class="hv-item-child">
+                                                            <!-- Key component -->
+                                                            <div class="hv-item">
+
+                                                                <div class="hv-item-parent">
+
+                                                                    <div class="circle">
+                                                                        <h4><a class="add" href="#squarespaceModal-7"
+                                                                               data-toggle="modal"
+                                                                               data-unique_id="{{$user->unique_id}}"
+                                                                               data-position="1"><i
+                                                                                        class="fa fa-plus"></i></a>
+                                                                        </h4>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="hv-item-child">
+                                                            <!-- Key component -->
+                                                            <div class="hv-item">
+
+                                                                <div class="hv-item-parent">
+
+                                                                    <div class="circle">
+                                                                        <h4><a class="add" href="#squarespaceModal-7"
+                                                                               data-toggle="modal"
+                                                                               data-unique_id="{{$user->unique_id}}"
+                                                                               data-position="2"><i
+                                                                                        class="fa fa-plus"></i>
+                                                                            </a>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @elseif($user->LeftDownLine)
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                                                                 alt="">
+                                                            <p class="name">
+                                                                {{$user->LeftDownLine->name}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="circle">
+                                                            <h4><a class="add" href="#squarespaceModal-7"
+                                                                   data-toggle="modal"
+                                                                   data-unique_id="{{$user->LeftDownLine->unique_id}}"
+                                                                   data-position="2"><i
+                                                                            class="fa fa-plus"></i>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @elseif($user->RightDownLine)
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="circle">
+                                                            <h4><a class="add" href="#squarespaceModal-7"
+                                                                   data-toggle="modal"
+                                                                   data-unique_id="{{$user->RightDownLine->unique_id}}"
+                                                                   data-position="1"><i
+                                                                            class="fa fa-plus"></i>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="hv-item-child">
+                                                <!-- Key component -->
+                                                <div class="hv-item">
+
+                                                    <div class="hv-item-parent">
+                                                        <div class="person">
+                                                            <img src="https://randomuser.me/api/portraits/men/3.jpg"
+                                                                 alt="">
+                                                            <p class="name">
+                                                                {{$user->RightDownLine->name}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        @endif
 
                                     </div>
 
                                 </div>
+
                             </div>
-                        </section>
-
-                    </div>
-
+                        </div>
+                    </section>
 
                 </div>
             </div>
@@ -121,22 +304,8 @@
                             <form class="register_form" method="POST" action="{{ url('addDownLine') }}">
                                 @csrf
 
-                                <div class="form-group col-sm-12 lft">
-                                    <div class="form-control" style="height: 35px;">
-                                        <div class="pull-left">
-                                            <label for="position">Left</label>
-                                            <input checked required value="1" name="position"
-                                                   type="radio">
-
-                                        </div>
-                                        <div class="pull-right">
-                                            <label for="position">Right</label>
-                                            <input required value="2" id="position" name="position"
-                                                   type="radio">
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <input id="position_input" type="hidden" name="position_input" value="">
+                                <input id="parent_id_input" type="hidden" name="parent_id_input" value="">
 
                                 <div class="form-group col-md-4  lft">
 
@@ -280,3 +449,147 @@
         </div>
     </div>
 </div>
+@section('js')
+    <script>
+        $(document).on('click', '.person', function (event) {
+
+            unique_id = $(this).data('unique_id');
+            obj = $(this);
+            $.post("ajax/getDownLines",
+                {
+                    unique_id: unique_id
+                },
+                function (data, status) {
+                    if (data.RightDownLine && data.LeftDownLine) {
+                        obj.parent().parent().append(
+                            '<div class="hv-item-children"></div> '
+                        ).find('.hv-item-children')
+                            .append(
+                                '<div class="hv-item-child">' +
+                                '<div class="hv-item">' +
+                                '<div class="hv-item-parent">' +
+                                '<div class="person" data-unique_id="' + data.LeftDownLine.unique_id + '" >' +
+                                '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                '<p class="name">' + data.LeftDownLine.name + '</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            ).append(
+                            '<div class="hv-item-child">' +
+                            '<div class="hv-item">' +
+                            '<div class="hv-item-parent">' +
+                            '<div class="person"  data-unique_id="' + data.RightDownLine.unique_id + '" >' +
+                            '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                            '<p class="name">' + data.RightDownLine.name + '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+
+                    }
+                    else {
+                        if (data.RightDownLine) {
+                            obj.parent().parent().append(
+                                '<div class="hv-item-children"></div> '
+                            ).find('.hv-item-children')
+                                .append(
+                                    '<div class="hv-item-child">' +
+                                    '<div class="hv-item">' +
+                                    '<div class="hv-item-parent">' +
+                                    '<div class="person" >' +
+                                    '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                    '<p class="name">+</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+                                ).append(
+                                '<div class="hv-item-child">' +
+                                '<div class="hv-item">' +
+                                '<div class="hv-item-parent">' +
+                                '<div class="person"  data-unique_id="' + data.RightDownLine.unique_id + '" >' +
+                                '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                '<p class="name">' + data.RightDownLine.name + '</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                        }
+                        else if (data.LeftDownLine) {
+                            obj.parent().parent().append(
+                                '<div class="hv-item-children"></div> '
+                            ).find('.hv-item-children')
+                                .append(
+                                    '<div class="hv-item-child">' +
+                                    '<div class="hv-item">' +
+                                    '<div class="hv-item-parent">' +
+                                    '<div class="person" data-unique_id="' + data.LeftDownLine.unique_id + '" >' +
+                                    '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                    '<p class="name">' + data.LeftDownLine.name + '</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+                                ).append(
+                                '<div class="hv-item-child">' +
+                                '<div class="hv-item">' +
+                                '<div class="hv-item-parent">' +
+                                '<div class="person" >' +
+                                '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                '<p class="name">+</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                        }
+                        else {
+                            obj.parent().parent().append(
+                                '<div class="hv-item-children"></div> '
+                            ).find('.hv-item-children')
+                                .append(
+                                    '<div class="hv-item-child">' +
+                                    '<div class="hv-item">' +
+                                    '<div class="hv-item-parent">' +
+                                    '<div class="person" >' +
+                                    '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                    '<p class="name">+</p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>'
+                                ).append(
+                                '<div class="hv-item-child">' +
+                                '<div class="hv-item">' +
+                                '<div class="hv-item-parent">' +
+                                '<div class="person" >' +
+                                '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
+                                '<p class="name">+</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                        }
+                    }
+                });
+
+        });
+    </script>
+
+    <script>
+        $('#squarespaceModal').empty();
+        $('.add').click(function () {
+
+            unique_id = $(this).data('unique_id');
+            position = $(this).data('position');
+
+            $("#parent_id_input").val(unique_id);
+            $("#position_input").val(position);
+        })
+
+    </script>
+@endsection
