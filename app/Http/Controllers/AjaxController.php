@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Sub_categoty;
 use App\User;
+use Hash;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -52,6 +53,30 @@ class AjaxController extends Controller
             'LeftDownLine' => $LeftDownLine,
             'RightDownLine' => $RightDownLine
         ], 200);
+    }
 
+    public function update_password(Request $request)
+    {
+        $user = auth()->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return response()->json($request->password, 200);
+    }
+
+    public function update_inside_password(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->inside_password = Hash::make($request->inside_password);
+        $user->save();
+        return response()->json('ok', 200);
+    }
+
+    public function transfer_user_name(Request $request)
+    {
+        $user = User::where('unique_id', $request->unique_id)->first();
+        if ($user)
+            return response()->json($user->name, 200);
+        else
+            return response()->json('', 200);
     }
 }

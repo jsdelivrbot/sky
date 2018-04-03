@@ -27,7 +27,7 @@
     <link href="{{asset('admin_assets/css/style.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('admin_assets/img/logo.png')}}" rel="shortcut icon">
 
-
+    @yield('css')
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
@@ -170,7 +170,7 @@
 
     <!-- END FOOTER -->
 </div>
-</body>
+
 
 <script src="{{asset('admin_assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('admin_assets/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
@@ -184,7 +184,7 @@
 
 <!-- icheck checkboxes -->
 <script src="{{asset('admin_assets/js/style.js')}}" type="text/javascript"></script>
-@yield('scripts')
+
 <script>
     function ConfirmDelete() {
 
@@ -196,5 +196,6 @@
     }
 </script>
 
-
+@yield('js')
+</body>
 </html>

@@ -45,7 +45,7 @@ $(document).ready(function () {
     function valid_parent_id() {
         $("#register_form #parent_id").on('input', function (e) {
             if ($(this).val().match(/^\d+$/)) {
-                if ($(this).val().length > 5) {
+                if ($(this).val().length > 11) {
                     $(this).css('border-color', '#08bb90');
                     $("#register_form #submit_btn").prop('disabled', false);
                 }

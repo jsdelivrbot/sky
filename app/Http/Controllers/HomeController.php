@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Contact;
 use App\Country;
+use App\Jobs\Binary;
 use App\Product;
 use App\Sub_categoty;
+use Hash;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $schedule = new  Schedule();
+        $schedule->job(new Binary());
+
         $countries = Country::all();
         $products = Product::all();
         $categories = Category::all();

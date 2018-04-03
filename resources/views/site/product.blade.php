@@ -104,7 +104,7 @@
                                     @endif
                                 </div>
                                 <div class="clearfix"></div>
-                                @if($product->product_type_id == 2)
+                                @if($product->product_type_id == 1)
                                     <div class="col-md-6 col-xs-12 modq no-pd">
                                         <h4>Shipping Fees: <span>{{$product->shipping_fees}} EGP </span></h4>
                                     </div>
@@ -113,7 +113,7 @@
                                     <h4>Quantity: <span>{{$product->quantity}}</span></h4>
                                 </div>
                                 <div class="clearfix"></div>
-                                @if($product->product_type_id == 1)
+                                @if($product->product_type_id == 2)
                                     <div class="col-md-6 col-xs-12 modq no-pd">
                                         <h4>Commission: <span>{{$product->commission}} EGP </span></h4>
                                     </div>
@@ -136,9 +136,18 @@
                                 @endguest
                                 @auth
                                 @if(auth()->user()->qualified ==1)
-                                    <a href="#squarespaceModal-order" data-toggle="modal"
-                                       data-product_id="{{$product->id}}"
-                                       class="btn btn-form nwbtn1  add"><span class="cart"></span> Buy</a>
+
+
+                                    @if($product->product_type_id == 1)
+                                        <label class="btn btn-form nwbtn1 add gray_btn"><span
+                                                    class="cart"></span>
+                                            Order</label>
+                                    @else
+                                        <a href="#squarespaceModal-order" data-toggle="modal"
+                                           data-product_id="{{$product->id}}"
+                                           class="btn btn-form nwbtn1  add"><span class="cart"></span> Buy</a>
+                                    @endif
+
                                 @else
                                     @if($product->product_type_id == 1)
                                         <a href="#squarespaceModal-order" data-toggle="modal"
@@ -196,12 +205,13 @@
                             <input id="product_id_input" type="hidden" name="product_id" value="">
                             <div class="clearfix"></div>
                             <div class="form-group nw-pd">
-                                <select class="form-control" name="address_select">
-                                    @foreach(auth()->user()->addresses as $address)
-                                        <option value="{{$address->address}}">{{$address->address}}</option>
-                                    @endforeach
-                                </select>
-
+                                @if(auth()->user()->addresses)
+                                    <select class="form-control" name="address_select">
+                                        @foreach(auth()->user()->addresses as $address)
+                                            <option value="{{$address->address}}">{{$address->address}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                             </div>
                             <div class="clearfix"></div>
 

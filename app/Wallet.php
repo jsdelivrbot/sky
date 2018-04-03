@@ -22,14 +22,10 @@ class Wallet extends Model
     {
         return $this->belongsTo(Wallet_type::class, 'wallet_type_id');
     }
-
-    public function from_user()
+    public function transfer()
     {
-        return $this->belongsTo(User::class, 'from_id');
+        return $this->hasOne(Wallet_transfer::class, 'wallet_id');
     }
 
-    public function to_user()
-    {
-        return $this->belongsTo(User::class, 'to_id');
-    }
+
 }

@@ -19,8 +19,6 @@ class CreateWalletsTable extends Migration
             $table->integer('e_type_id'); // E-pin or E-Money
             $table->integer('transaction_id');
             $table->integer('wallet_type_id'); // transfer , shipping , etc
-            $table->integer('from_id'); // user_id
-            $table->integer('to_id'); //user_id
             $table->double('value');
             $table->integer('statement'); // credit(+) or debit (-)
             $table->double('e_pin_balance');

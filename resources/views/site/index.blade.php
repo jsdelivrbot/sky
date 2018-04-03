@@ -54,40 +54,50 @@
     </div>
     <div class="contents">
         <div class="container-fluid">
-            <div class="col-md-2 col-sm-3 col-xs-12 ">
-                <div class="side-bar">
-                    <form method="post" action="{{url("products")}}" id="sub_categories_form" class="buttons">
+
+            <form method="post" action="{{url("products/filter")}}" class="buttons">
+                @csrf
+                <div class="col-md-2 col-sm-3 col-xs-12 ">
+                    <div class="side-bar">
+
 
                         <div class="types">
                             <h2>Type</h2>
 
-
                             <label>
-                                <input value="3" type="checkbox" name="product_type_id">
+                                <input onchange="submit()" value="3" type="radio" name="product_type_id"
+                                       @if(session('product_type_id') == '3') checked @endif >
                                 <span class="label-text">All</span>
-                                </input>
                             </label>
                             <br/>
                             <label>
-                                <input value="1" type="checkbox" name="product_type_id"> <span class="label-text">Qualified Products</span>
-                                </input>
+                                <input value="1" onchange="submit()" type="radio" name="product_type_id"
+                                       @if(session('product_type_id') == '1') checked @endif >
+                                <span class="label-text">Qualified Products</span>
+
                             </label>
                             <br/>
                             <label>
-                                <input value="2" type="checkbox" name="product_type_id"> <span class="label-text">Premium Products</span>
-                                </input>
+                                <input value="2" onchange="submit()" type="radio" name="product_type_id"
+                                       @if(session('product_type_id') == '2') checked @endif >
+                                <span class="label-text">Premium Products</span>
+
                             </label>
 
                         </div>
-                        {{csrf_field()}}
+
+
                         <div class="categs">
                             <h2>Categories</h2>
 
                             <div id="categories_form" class="buttons">
                                 @foreach($categories as $category)
                                     <label>
-                                        <input name="category_id[]" class="category" onchange="getSubCategories()"
-                                               type="checkbox" value="{{$category->id}}">
+                                        <input name="category_id[]" class="category" onchange="submit()"
+                                               type="checkbox" value="{{$category->id}}"
+                                               @if(session('category_id'))
+                                               @if(in_array($category->id,session('category_id'))) checked @endif
+                                                @endif>
                                         <span class="label-text">{{$category->name}}</span>
                                     </label>
                                     <br/>
@@ -102,102 +112,118 @@
 
 
                             <div id="sub_categories_container">
-                                <label>
-
-                                </label>
-                                <br/>
-                            </div>
-
-
-                        </div>
-                        @if(count($categories->all())>0)
-                            <button type="submit" class="btn btn-custom-3">Search</button>
-                        @endif
-                    </form>
-
-                </div>
-
-
-            </div>
-
-            <div class="col-md-10 col-sm-9 col-xs-12 no-pd">
-                <div class="prdct-box clearfix">
-                    <div id="filter" class="clearfix ">
-
-                        <div class="col-md-7 col-sm-6 col-xs-12 no-pd1">
-                            <div class="filter-container">
-                                <form method="post" action="{{url("products/search")}}" id="register-newsletter">
-                                    @csrf
-                                    <input type="text" name="key" required placeholder="What Do You Want?">
-                                    <button type="submit" class="btn btn-custom-3">Search</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="col-md-5 col-sm-6 col-xs-12 no-pd1">
-
-                            <form method="post" action="{{url("products/filter")}}" class="myform">
-                                @csrf
-                                <label>Price:</label>
-                                <input name="from" type="text" placeholder="From">
-
-                                <input name="to" type="text" placeholder="To">
-                                <button type="submit" class="btn btn-custom-3">Filter</button>
-
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                    <div id="products_container" class="list clearfix">
-
-
-                        @foreach($products as $product)
-                            <div class="element element-in">
-                                <h3><a href="{{url("products/$product->id")}}">{{$product->name}}</a></h3>
-                                <a href="{{url("products/$product->id")}}"><img
-                                            src="{{$product->main_image}}" class="img-responsive"/></a>
-                                <p style="word-break: break-word">
-                                    {{substr($product->desc,0,120)}}
-                                </p>
-                                <a href="{{url("products/$product->id")}}"><strong>More..</strong></a>
-                                <h5 class="price">
-                                    @if($product->offer)
-                                        <span>{{$product->price}}LE</span>
-                                        {{$product->offer->new_price}} LE
-                                    @else {{$product->price}} LE
-                                    @endif
-                                </h5>
-                                @guest
-                                <a href="#squarespaceModal" data-toggle="modal"
-                                   class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
-                                @endguest
-                                @auth
-                                @if(auth()->user()->qualified ==1)
-                                    <a href="#squarespaceModal-order" data-toggle="modal"
-                                       data-product_id="{{$product->id}}"
-                                       class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
-                                @else
-                                    @if($product->product_type_id == 1)
-                                        <a href="#squarespaceModal-order" data-toggle="modal"
-                                           data-product_id="{{$product->id}}"
-                                           class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
-                                    @else
-                                        <label class="btn btn-form nwbtn add gray_btn"><span
-                                                    class="cart"></span>
-                                            Order</label>
-                                    @endif
+                                @if(isset($sub_categories))
+                                    @foreach($sub_categories as $sub_category)
+                                        <label>
+                                            <input name="sub_category_id[]" class="category" onchange="submit()"
+                                                   type="checkbox" value="{{$sub_category->id}}"
+                                                   @if(session('sub_category_id'))
+                                                   @if(in_array($sub_category->id,session('sub_category_id'))) checked @endif
+                                                    @endif>
+                                            <span class="label-text">{{$sub_category->name}}</span>
+                                        </label>
+                                        <br/>
+                                    @endforeach
                                 @endif
-                                @endauth
                             </div>
-                        @endforeach
+
+
+                        </div>
+
 
                     </div>
 
-
                 </div>
-            </div>
+
+                <div class="col-md-10 col-sm-9 col-xs-12 no-pd">
+                    <div class="prdct-box clearfix">
+                        <div id="filter" class="clearfix ">
+
+                            <div class="col-md-7 col-sm-6 col-xs-12 no-pd1">
+                                <div class="filter-container">
+
+                                    <input type="text" name="key" required placeholder="What Do You Want?"
+                                           @if(session('key'))
+                                           value="{{session('key')}}"@endif>
+                                    <button type="submit" class="btn btn-custom-3">Search</button>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 col-sm-6 col-xs-12 no-pd1">
+                                <div class="myform">
+                                    <label>Price:</label>
+                                    <input name="from" type="text" placeholder="From"
+                                           @if(session('from'))
+                                           value="{{session('from')}}"@endif>
+
+                                    <input name="to" type="text" placeholder="To"
+                                           @if(session('to'))
+                                           value="{{session('to')}}"@endif>
+                                    <button type="submit" class="btn btn-custom-3">Filter</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="products_container" class="list clearfix">
+
+
+                            @foreach($products as $product)
+                                <div class="element element-in">
+                                    <h3><a href="{{url("products/$product->id")}}">{{$product->name}}</a></h3>
+                                    <a href="{{url("products/$product->id")}}"><img width="240" height="180"
+                                                                                    src="{{$product->main_image}}"
+                                                                                    class="img-responsive"/></a>
+                                    <p style="word-break: break-word">
+                                        {{substr($product->desc,0,120)}}
+                                    </p>
+                                    <a href="{{url("products/$product->id")}}"><strong>More..</strong></a>
+                                    <h5 class="price">
+                                        @if($product->offer)
+                                            <span>{{$product->price}}LE</span>
+                                            {{$product->offer->new_price}} LE
+                                        @else {{$product->price}} LE
+                                        @endif
+                                    </h5>
+                                    @guest
+                                    <a href="#squarespaceModal" data-toggle="modal"
+                                       class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
+                                    @endguest
+                                    @auth
+                                    @if(auth()->user()->qualified ==1)
+
+                                        @if($product->product_type_id == 1)
+                                            <label class="btn btn-form nwbtn add gray_btn"><span
+                                                        class="cart"></span>
+                                                Order</label>
+                                        @else
+                                            <a href="#squarespaceModal-order" data-toggle="modal"
+                                               data-product_id="{{$product->id}}"
+                                               class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                        @endif
+
+                                    @else
+                                        @if($product->product_type_id == 1)
+                                            <a href="#squarespaceModal-order" data-toggle="modal"
+                                               data-product_id="{{$product->id}}"
+                                               class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                        @else
+                                            <label class="btn btn-form nwbtn add gray_btn"><span
+                                                        class="cart"></span>
+                                                Order</label>
+                                        @endif
+                                    @endif
+                                    @endauth
+                                </div>
+                            @endforeach
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
 
         </div>
     </div>
@@ -208,7 +234,17 @@
         $('.add').click(function () {
             id = $(this).data('product_id');
             $("#product_id_input").val(id);
-        })
+        });
+        @if(session('order_insufficient_money'))
+
+            $.notify("home");
+
+        @php
+            session()->forget('order_insufficient_money');
+        @endphp
+
+        @endif
+
     </script>
 @endsection
 @auth
@@ -230,12 +266,13 @@
                             <input id="product_id_input" type="hidden" name="product_id" value="">
                             <div class="clearfix"></div>
                             <div class="form-group nw-pd">
-                                <select class="form-control" name="address_select">
-                                    @foreach(auth()->user()->addresses as $address)
-                                        <option value="{{$address->address}}">{{$address->address}}</option>
-                                    @endforeach
-                                </select>
-
+                                @if(auth()->user()->addresses)
+                                    <select class="form-control" name="address_select">
+                                        @foreach(auth()->user()->addresses as $address)
+                                            <option value="{{$address->address}}">{{$address->address}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                             </div>
                             <div class="clearfix"></div>
 
@@ -264,4 +301,3 @@
     </div>
 </div>
 @endauth
-

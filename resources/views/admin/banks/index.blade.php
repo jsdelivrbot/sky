@@ -9,41 +9,79 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bubble font-dark"></i>
-                        <span class="caption-subject font-dark bold uppercase">banks</span>
+                        <span class="caption-subject font-dark bold uppercase">Banks</span>
                     </div>
 
                 </div>
-                <div class="portlet-body">
-                    <form method="post" action="{{url("admin/banks_filter")}}">
-                        @csrf
-                        <div class="form-group form-md-line-input col-xs-4">
-                            <input name="key" placeholder="name , ID , mobile" class="form-control">
 
-                        </div>
-                        <div class="form-group form-md-line-input col-xs-3">
-                            <div class="col-xs-6">
-                                <div class="checkbox ">
-                                    <label><input name="all" type="checkbox" value="1" >All</label>
+
+                <div class="portlet-body">
+
+
+                    <form class="attireCodeToggleBlock" method="post" action="{{url("admin/banks_transfer")}}">
+                        @csrf
+                        <div class="form-body">
+
+                            <div class="form-group form-md-line-input">
+                                <select class="multipleSelect " multiple name="language">
+                                    @foreach($users as $user)
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group form-md-line-input">
+                                <div class="col-xs-6">
+                                    <label>E-PIN</label>
+                                    <input class="form-control" type="number" name="e_pin">
+                                    <div class="form-group form-md-line-input">
+                                        <div class="col-xs-12">
+                                            <label class="radio-inline pull-right">
+                                                <input checked type="radio" value="2"
+                                                       name="e_pin_statement">Depit
+                                            </label>
+                                            <label class="radio-inline pull-left">
+                                                <input type="radio" value="1"
+                                                       name="e_pin_statement">Credit
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>E-MONEY</label>
+                                    <input class="form-control" type="number" name="e_money">
+                                    <div class="form-group form-md-line-input">
+                                        <div class="col-xs-12">
+                                            <label class="radio-inline pull-right">
+                                                <input checked type="radio" value="2"
+                                                       name="e_money_statement">Depit
+                                            </label>
+                                            <label class="radio-inline pull-left">
+                                                <input type="radio" value="1"
+                                                       name="e_money_statment">Credit
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-group form-md-line-input text-center">
 
+                                    <button class="btn btn-success" type="submit">Transfer</button>
+
+                            </div>
                         </div>
 
-                        <div class="form-group form-md-line-input col-xs-2">
-                            <button type="submit" class="btn btn-primary label-sm">
-                                <span class="glyphicon "></span>Filter
-                            </button>
-                        </div>
                     </form>
+
+
                     <div class="table-scrollable">
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>from</th>
-                                <th>to</th>
-                                <th>type</th>
-                                <th>value</th>
+                                <th>Transaction ID</th>
+                                <th>Type</th>
+                                <th>From / To</th>
+                                <th>Value</th>
+                                <th>Date / Time</th>
                                 <th></th>
 
                             </tr>
@@ -51,17 +89,27 @@
                             <tbody>
                             @foreach($items as $item)
                                 <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->from_user->name}} </td>
-                                    <td>{{$item->to_user->name}} </td>
+                                    <td>{{$item->transaction_id}}</td>
+                                    <td>{{$item->wallet_type->name}}</td>
                                     <td>
-                                        @if($item->wallet_type_id == 1)
-                                            E-PIN
+                                        @if($item->wallet_type_id == 2)
+                                            {{$item->transfer->from_user->name}}
+                                            / {{$item->transfer->to_user->name}}
                                         @else
-                                            E-MONEY
+                                            {{$item->wallet_type->name}}
                                         @endif
                                     </td>
-                                    <td>{{$item->value}} </td>
+                                    @if($item->statement ==1)
+                                        <td class="bl">
+                                            +{{$item->value}}
+                                        </td>
+                                    @else
+                                        <td class="rd">
+                                            -{{$item->value}}
+                                        </td>
+                                    @endif
+                                    <td>{{$item->created_at}}</td>
+                                    <td class="blnc">{{$item->e_pin_balance}} EG</td>
 
                                     <td>
                                         <div class="col-sm-12">
@@ -76,11 +124,11 @@
 
                             </tbody>
                         </table>
-                        <div class="text-center page-full-width">
-                            {{$items->links()}}
-                        </div>
 
                     </div>
+                </div>
+                <div class="text-center page-full-width">
+                    {{$items->links()}}
                 </div>
             </div>
         </div>
@@ -88,11 +136,26 @@
 
     </div>
     <!-- END CONTENT -->
-    <script src="{{asset('assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>
+
+
+@endsection
+@section('css')
+    <link rel="stylesheet" href="{{asset("assets/")}}/fastselect/dist/fastselect.min.css">
+    <style>
+        .fstMultipleMode .fstControls, .fstElement {
+            width: 100%;
+        }
+    </style>
+@endsection
+
+@section('js')
+    <script src="{{asset("assets/")}}/fastselect/dist/fastselect.standalone.js"></script>
+
 
     <script>
         $("#dash").removeClass("active");
         $(".banks").addClass("open active").css("display", "block");
+        $('.multipleSelect').fastselect();
     </script>
 
 @endsection

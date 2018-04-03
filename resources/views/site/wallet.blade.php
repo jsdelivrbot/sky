@@ -104,7 +104,14 @@
                                                     <tr>
                                                         <td>{{$e_pin->transaction_id}}</td>
                                                         <td>{{$e_pin->wallet_type->name}}</td>
-                                                        <td>{{$e_pin->from_user->name}} / {{$e_pin->to_user->name}}</td>
+                                                        <td>
+                                                            @if($e_pin->wallet_type_id == 2)
+                                                                {{$e_pin->transfer->from_user->name}}
+                                                                / {{$e_pin->transfer->to_user->name}}
+                                                            @else
+                                                                {{$e_pin->wallet_type->name}}
+                                                            @endif
+                                                        </td>
                                                         @if($e_pin->statement ==1)
                                                             <td class="bl">
                                                                 +{{$e_pin->value}}
@@ -129,9 +136,10 @@
                                                 Action <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Admin</a></li>
-                                                <li><a href="#">Transfers</a></li>
+
+                                                <li><a data-type="0" href="#">All</a></li>
+                                                <li><a data-type="1" href="#">Admin</a></li>
+                                                <li><a data-type="2" href="#">Transfers</a></li>
 
                                             </ul>
                                         </div>
@@ -153,8 +161,14 @@
                                                         <tr>
                                                             <td>{{$e_pin->transaction_id}}</td>
                                                             <td>{{$e_pin->wallet_type->name}}</td>
-                                                            <td>{{$e_pin->from_user->name}}
-                                                                / {{$e_pin->to_user->name}}</td>
+                                                            <td>
+                                                                @if($e_pin->wallet_type_id == 2)
+                                                                    {{$e_pin->transfer->from_user->name}}
+                                                                    / {{$e_pin->transfer->to_user->name}}
+                                                                @else
+                                                                    {{$e_pin->wallet_type->name}}
+                                                                @endif
+                                                            </td>
                                                             <td class="bl">+{{$e_pin->value}}</td>
                                                             <td>{{$e_pin->created_at}}</td>
                                                             <td class="blnc">{{$e_pin->e_pin_balance}} EGp</td>
@@ -172,13 +186,13 @@
                                                 Action <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Admin</a></li>
-                                                <li><a href="#">Transfers</a></li>
-                                                <li><a href="#">Registration</a></li>
-                                                <li><a href="#">Shipping</a></li>
-                                                <li><a href="#">Buy Premuim Products</a></li>
-                                                <li><a href="#">Renewal</a></li>
+                                                <li><a data-type="0" href="#">All</a></li>
+                                                <li><a data-type="1" href="#">Admin</a></li>
+                                                <li><a data-type="2" href="#">Transfers</a></li>
+                                                <li><a data-type="3" href="#">Registration</a></li>
+                                                <li><a data-type="4" href="#">Shipping</a></li>
+                                                <li><a data-type="5" href="#">Buy Premuim Products</a></li>
+                                                <li><a data-type="6" href="#">Renewal</a></li>
 
                                             </ul>
                                         </div>
@@ -200,8 +214,14 @@
                                                         <tr>
                                                             <td>{{$e_pin->transaction_id}}</td>
                                                             <td>{{$e_pin->wallet_type->name}}</td>
-                                                            <td>{{$e_pin->from_user->name}}
-                                                                / {{$e_pin->to_user->name}}</td>
+                                                            <td>
+                                                                @if($e_pin->wallet_type_id == 2)
+                                                                    {{$e_pin->transfer->from_user->name}}
+                                                                    / {{$e_pin->transfer->to_user->name}}
+                                                                @else
+                                                                    {{$e_pin->wallet_type->name}}
+                                                                @endif
+                                                            </td>
                                                             <td class="rd">-{{$e_pin->value}}</td>
                                                             <td>{{$e_pin->created_at}}</td>
                                                             <td class="blnc">{{$e_pin->e_pin_balance}} EGp</td>
@@ -245,7 +265,7 @@
                                                 <tr>
                                                     <th>Transaction ID</th>
                                                     <th>Type</th>
-                                                    <th>Source</th>
+                                                    <th>From/To</th>
                                                     <th>Value</th>
                                                     <th>Date / Time</th>
                                                     <th>Balance</th>
@@ -256,8 +276,14 @@
                                                     <tr>
                                                         <td>{{$e_money->transaction_id}}</td>
                                                         <td>{{$e_money->wallet_type->name}}</td>
-                                                        <td>{{$e_money->from_user->name}}
-                                                            / {{$e_money->to_user->name}}</td>
+                                                        <td>
+                                                            @if($e_money->wallet_type_id == 2)
+                                                                {{$e_money->transfer->from_user->name}}
+                                                                / {{$e_money->transfer->to_user->name}}
+                                                            @else
+                                                                {{$e_money->wallet_type->name}}
+                                                            @endif
+                                                        </td>
                                                         @if($e_money->statement ==1)
                                                             <td class="bl">
                                                                 +{{$e_money->value}}
@@ -282,10 +308,10 @@
                                                 Action <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Admin</a></li>
-                                                <li><a href="#">Commissions</a></li>
-                                                <li><a href="#">Shippings</a></li>
+                                                <li><a data-type="0" href="#">All</a></li>
+                                                <li><a data-type="1" href="#">Admin</a></li>
+                                                <li><a data-type="7" href="#">Commissions</a></li>
+                                                <li><a data-type="4" href="#">Shippings</a></li>
 
 
                                             </ul>
@@ -296,7 +322,7 @@
                                                 <tr>
                                                     <th>Transaction ID</th>
                                                     <th>Type</th>
-                                                    <th>Source2</th>
+                                                    <th>From / To</th>
                                                     <th>Value</th>
                                                     <th>Date / Time</th>
                                                     <th>Balance</th>
@@ -308,8 +334,14 @@
                                                         <tr>
                                                             <td>{{$e_money->transaction_id}}</td>
                                                             <td>{{$e_money->wallet_type->name}}</td>
-                                                            <td>{{$e_money->from_user->name}}
-                                                                / {{$e_money->to_user->name}}</td>
+                                                            <td>
+                                                                @if($e_money->wallet_type_id == 2)
+                                                                    {{$e_money->transfer->from_user->name}}
+                                                                    / {{$e_money->transfer->to_user->name}}
+                                                                @else
+                                                                    {{$e_money->wallet_type->name}}
+                                                                @endif
+                                                            </td>
                                                             <td class="bl">
                                                                 +{{$e_money->value}}
                                                             </td>
@@ -329,10 +361,10 @@
                                                 Action <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">All</a></li>
-                                                <li><a href="#">Admin</a></li>
-                                                <li><a href="#">Transfers</a></li>
-                                                <li><a href="#">Buy Qualification Products</a></li>
+                                                <li><a data-type="0" href="#">All</a></li>
+                                                <li><a data-type="1" href="#">Admin</a></li>
+                                                <li><a data-type="2" href="#">Transfers</a></li>
+                                                <li><a data-type="8" href="#">Buy Qualification Products</a></li>
 
 
                                             </ul>
@@ -343,7 +375,7 @@
                                                 <tr>
                                                     <th>Transaction ID</th>
                                                     <th>Type</th>
-                                                    <th>Source3</th>
+                                                    <th>From / To</th>
                                                     <th>Value</th>
                                                     <th>Date / Time</th>
                                                     <th>Balance</th>
@@ -351,12 +383,18 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach($e_moneys as $e_money)
-                                                    @if(!$e_money->statement ==1)
+                                                    @if($e_money->statement ==2)
                                                         <tr>
                                                             <td>{{$e_money->transaction_id}}</td>
                                                             <td>{{$e_money->wallet_type->name}}</td>
-                                                            <td>{{$e_money->from_user->name}}
-                                                                / {{$e_money->to_user->name}}</td>
+                                                            <td>
+                                                                @if($e_money->wallet_type_id == 2)
+                                                                    {{$e_money->transfer->from_user->name}}
+                                                                    / {{$e_money->transfer->to_user->name}}
+                                                                @else
+                                                                    {{$e_money->wallet_type->name}}
+                                                                @endif
+                                                            </td>
                                                             <td class="rd">
                                                                 -{{$e_money->value}}
                                                             </td>
@@ -382,9 +420,38 @@
         </div>
 
     </div>
-
+    <form id="wallet_filter_form" method="post" action="{{url("wallet/filter")}}">
+        @csrf
+        <input type="hidden" id="wallet_type_id" name="wallet_type_id" value="">
+    </form>
 @endsection
-<div class="modal fade" id="squarespaceModal-5" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+@section('js')
+    <script>
+
+        @if(session('transfer1'))
+
+        $.notify("incorrect inside password");
+        @php
+            session()->forget('transfer1');
+        @endphp
+        @endif
+
+        @if(session('transfer2'))
+
+        $.notify("inbalance money");
+        @php
+            session()->forget('transfer2');
+        @endphp
+        @endif
+
+        $('.dropdown-menu li a').click(function () {
+            $('#wallet_type_id').val($(this).data('type'));
+            $('#wallet_filter_form').submit();
+        });
+    </script>
+@endsection
+<div class="modal fade" id="squarespaceModal-5" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content mymodal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -405,17 +472,19 @@
                                 @csrf
                                 <input type="hidden" name="e_type_id" value="2">
                                 <div class="form-group col-md-6  lft">
-                                    <input required name="unique_id" type="text" class="form-control"  placeholder="User ID">
+                                    <input id="transfer_unique_id1" required name="unique_id" type="text"
+                                           class="form-control " placeholder="User ID">
                                 </div>
-                                <div class="form-group col-md-6 rght" >
-                                    <p class="user_name">mohamed halim</p>
+                                <div class="form-group col-md-6 rght">
+                                    <p id="transfer_user_name1" class="user_name "></p>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="form-group nw-pd">
-                                    <input required name="value" type="text" class="form-control"  placeholder="Amount">
+                                    <input required name="value" type="text" class="form-control" placeholder="Amount">
                                 </div>
                                 <div class="form-group nw-pd">
-                                    <input required name="inside_password" type="password" class="form-control"  placeholder="Inside Password">
+                                    <input required name="inside_password" type="password" class="form-control"
+                                           placeholder="Inside Password">
                                 </div>
 
                                 <button type="submit" class="btn nwbtn3">Transfer</button>
@@ -427,17 +496,19 @@
                                 @csrf
                                 <input type="hidden" name="e_type_id" value="1">
                                 <div class="form-group col-md-6  lft">
-                                    <input required name="unique_id" type="text" class="form-control"  placeholder="User ID">
+                                    <input id="transfer_unique_id2" required name="unique_id" type="text"
+                                           class="form-control " placeholder="User ID">
                                 </div>
-                                <div class="form-group col-md-6 rght" >
-                                    <p>Mahmoud halim</p>
+                                <div class="form-group col-md-6 rght">
+                                    <p id="transfer_user_name2"></p>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="form-group nw-pd">
-                                    <input required name="value" type="text" class="form-control"  placeholder="Amount">
+                                    <input required name="value" type="text" class="form-control" placeholder="Amount">
                                 </div>
                                 <div class="form-group nw-pd">
-                                    <input required name="inside_password" type="password" class="form-control"  placeholder="Inside Password">
+                                    <input required name="inside_password" type="password" class="form-control"
+                                           placeholder="Inside Password">
                                 </div>
 
                                 <button type="submit" class="btn nwbtn3">Transfer</button>
@@ -448,7 +519,6 @@
 
                     </section>
                 </div>
-
 
 
             </div>

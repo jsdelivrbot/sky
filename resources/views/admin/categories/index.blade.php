@@ -63,11 +63,10 @@
 
                             </tbody>
                         </table>
-                        <div class="text-center page-full-width">
-                            {{$items->links()}}
-                        </div>
-
                     </div>
+                </div>
+                <div class="text-center page-full-width">
+                    {{$items->links()}}
                 </div>
             </div>
         </div>

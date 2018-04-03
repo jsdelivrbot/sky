@@ -25,7 +25,7 @@ class ProductsSeeder extends Seeder
                 'shipping_fees' => $faker->numberBetween(999, 9999),
                 'commission' => $faker->numberBetween(999, 9999),
                 'quantity' => $faker->numberBetween(99, 999),
-                'main_image' => $faker->imageUrl($width = 100, $height = 100),
+                'main_image' => $faker->imageUrl($width = 240, $height = 180),
                 'product_type_id' => $faker->numberBetween(1, 2),
                 'sub_category_id' => $faker->numberBetween(1, 2),
                 'category_id' => $faker->numberBetween(1, 2),

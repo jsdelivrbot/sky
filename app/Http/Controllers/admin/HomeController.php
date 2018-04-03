@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
+        $items = User::paginate(10);
         if ($request->email == 'admin@admin.com' and $request->password == '123456') {
             return view('admin.users.index', compact('items'));
         } else

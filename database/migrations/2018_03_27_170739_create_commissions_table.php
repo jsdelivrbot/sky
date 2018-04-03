@@ -17,7 +17,7 @@ class CreateCommissionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->double('value');
-            $table->integer('commission_type_id'); // direct etc
+            $table->integer('commission_type_id'); // direct , admin , etc
             $table->timestamps();
         });
     }

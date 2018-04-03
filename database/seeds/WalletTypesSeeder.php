@@ -12,6 +12,8 @@ class WalletTypesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Wallet_type::create(['name' => 'Wallet_type']);
+        $types = ['admin', 'transfer', 'register', 'shipping', 'premium_product', 'renewal' ,'commissions' ,'qualified_product'];
+        foreach ($types as $type)
+            \App\Wallet_type::create(['name' => $type]);
     }
 }

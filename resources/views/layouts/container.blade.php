@@ -50,16 +50,16 @@
                 <div class="col-md-4 col-sm-3 col-xs-12 no-pd text-right">
                     <ul class="toplist">
                         @guest
-                            <li><a href="#squarespaceModal" data-toggle="modal"><i class="fa fa-user"></i> Login</a>
-                            </li>
+                        <li><a href="#squarespaceModal" data-toggle="modal"><i class="fa fa-user"></i> Login</a>
+                        </li>
                         @endguest
                         @auth
-                            <li>
-                                <p class="white"><i class="fa fa-user"></i> Welcome, {{auth()->user()->name}}
-                                    <span class="brs"><a href="#squarespaceModal-4" data-toggle="modal"><i
-                                                    class="fa fa-bars"></i></a></span>
-                                </p>
-                            </li>
+                        <li>
+                            <p class="white"><i class="fa fa-user"></i> Welcome, {{auth()->user()->name}}
+                                <span class="brs"><a href="#squarespaceModal-4" data-toggle="modal"><i
+                                                class="fa fa-bars"></i></a></span>
+                            </p>
+                        </li>
                         @endauth
 
                     </ul>
@@ -124,7 +124,7 @@
 
                                 </ul>
                             </div>
-                            <div class="panel-body" >
+                            <div class="panel-body">
                                 <h4 id="auth_message" class="color_danger text-center"></h4>
                                 <div class="tab-content">
 
@@ -134,8 +134,8 @@
                                             @csrf
                                             <div class="form-group">
 
-                                                <input value="{{ old('user_name') }}" name="user_name" type="text"
-                                                       class="form-control" placeholder="User Name">
+                                                <input value="{{ old('email') }}" name="email" type="text"
+                                                       class="form-control" placeholder="Email">
                                             </div>
                                             <div class="form-group">
 
@@ -163,7 +163,7 @@
 
                                             <div class="form-group col-sm-6 lft">
 
-                                                <input required id="parent_id" maxlength="6"
+                                                <input required id="parent_id"
                                                        value="{{ old('parent_id') }}"
                                                        name="parent_id"
                                                        type="text"
@@ -174,10 +174,12 @@
                                                 <div class="form-control" style="height: 35px;">
 
                                                     <label style="margin-right: 25px" class="radio-inline">
-                                                        <input style="margin-top:7px" checked type="radio" value="1" name="position">Left
+                                                        <input style="margin-top:7px" checked type="radio" value="1"
+                                                               name="position">Left
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input style="margin-top:7px" type="radio" value="2" name="position">Right
+                                                        <input style="margin-top:7px" type="radio" value="2"
+                                                               name="position">Right
                                                     </label>
 
                                                 </div>
@@ -373,6 +375,7 @@
         </div>
     </div>
 </div>
+@auth
 <div class="modal fade" id="squarespaceModal-6" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -387,46 +390,43 @@
                         <h3 class="menu-title">My Profile</h3>
                         <div class="clearfix"></div>
                         @auth
-                            <div class="col-md-12 col-xs-12">
-                                <h3 class="ylw">Account Information:</h3>
-                                <p><strong>Username:</strong> <span>{{auth()->user()->user_name}}</span></p>
-                                <p><strong>Account ID:</strong> <span>{{auth()->user()->unique_id}}</span></p>
-                                <p><strong>E-Mail:</strong> <span>{{auth()->user()->email}}</span></p>
-                                <table class="tbl">
-                                    <tr>
-                                        <td><strong>Password:</strong></td>
-                                        <td><p class="meterReadings"><span id="meter01" contenteditable="false"
-                                                                           class="meterEdit">******</span>
-                                            </p></td>
-                                        <td><p class="unionPencil" data-edit-target="meter01"><span
-                                                        class="fa fa-pencil"></span></p></td>
-                                    </tr>
-                                </table>
-                                <table class="tbl">
-                                    <tr>
-                                        <td><strong>Inside Password:</strong></td>
-                                        <td><p class="meterReadings"><span id="meter02" contenteditable="false"
-                                                                           class="meterEdit">******</span>
-                                            </p></td>
-                                        <td><p class="unionPencil" data-edit-target="meter01"><span
-                                                        class="fa fa-pencil"></span></p></td>
+                        <div class="col-md-12 col-xs-12">
+                            <h3 class="ylw">Account Information:</h3>
+                            <p><strong>Username:</strong> <span>{{auth()->user()->user_name}}</span></p>
+                            <p><strong>Account ID:</strong> <span>{{auth()->user()->unique_id}}</span></p>
+                            <p><strong>E-Mail:</strong> <span>{{auth()->user()->email}}</span></p>
+                            <table class="tbl">
+                                <tr>
+                                    <td><strong>Password:</strong></td>
+                                    <td><p class="meterReadings"><span id="meter01" contenteditable="false"
+                                                                       class="meterEdit">******</span></p></td>
+                                    <td><p class="unionPencil" data-edit-target="meter01"><span
+                                                    class="fa fa-pencil"></span></p></td>
+                                </tr>
+                            </table>
+                            <table class="tbl">
+                                <tr>
+                                    <td><strong>Inside Password:</strong></td>
+                                    <td><p class="meterReadings"><span id="meter02" contenteditable="false"
+                                                                       class="meterEdit">******</span></p></td>
+                                    <td><p class="unionPencil" data-edit-target="meter02"><span
+                                                    class="fa fa-pencil"></span></p></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <h3 class="ylw">Account Information:</h3>
+                            <p><strong>Name:</strong> <span>{{auth()->user()->name}}</span></p>
+                            <p><strong>Address:</strong>
+                                <span>@if(auth()->user()->addresses){{auth()->user()->addresses->first()->address}}@endif</span>
+                            </p>
+                            <p><strong>Phone:</strong> <span>{{auth()->user()->phone}}</span></p>
+                            <p><strong>Date of Birth:</strong>
+                                <span>{{date('Y-m-d',auth()->user()->birth_date)}}</span>
+                            </p>
+                            <p><strong>National ID:</strong> <span>{{auth()->user()->national_id}}</span></p>
 
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-12 col-xs-12">
-                                <h3 class="ylw">Account Information:</h3>
-                                <p><strong>Name:</strong> <span>{{auth()->user()->name}}</span></p>
-                                <p><strong>Address:</strong>
-                                    <span>@if(auth()->user()->addresses){{auth()->user()->addresses->first()->address}}@endif</span>
-                                </p>
-                                <p><strong>Phone:</strong> <span>{{auth()->user()->phone}}</span></p>
-                                <p><strong>Date of Birth:</strong>
-                                    <span>{{date('Y-m-d',auth()->user()->birth_date)}}</span>
-                                </p>
-                                <p><strong>National ID:</strong> <span>{{auth()->user()->national_id}}</span></p>
-
-                            </div>
+                        </div>
                         @endauth
                     </div>
                 </div>
@@ -434,6 +434,7 @@
         </div>
     </div>
 </div>
+@endauth
 <div class="modal fade" id="squarespaceModal-3" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -513,21 +514,30 @@
 </div>
 
 <div id="url" data-url="{{url('')}}"></div>
-
+@auth
+<div id="user_id" data-user_id="{{auth()->user()->id}}"></div>
+@endauth
 <!--modals-->
 <script src="{{asset("assets/")}}/js/jquery-3.1.0.min.js"></script>
+<script src="{{asset("assets/")}}/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="{{asset("assets/")}}/js/jquery.noconflict.js" type="text/javascript"></script>
 <script src="{{asset("assets/")}}/js/bootstrap.js" type="text/jscript"></script>
-<script src="{{asset("assets/")}}/js/aslider.min.js"></script>
 <script src="{{asset("assets/")}}/js/menu.js"></script>
+<script src="{{asset("assets/")}}/js/edit.js"></script>
+<script src="{{asset("assets/")}}/js/aslider.min.js"></script>
 <script src="{{asset("assets/")}}/js/jquery.nicescroll.min.js"></script>
 <script src="{{asset("assets/")}}/js/scroll.js"></script>
 <script src="{{asset("assets/")}}/js/register.js"></script>
+<script src="{{asset("assets/")}}/js/ajax.js"></script>
 <script src="{{asset("assets/")}}/js/style.js"></script>
+<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
 
 
 <script>
 
+    function submit() {
+        $(this).closest('form').submit();
+    }
     jQuery(document).ready(function ($) {
 
         $('#myCarousel').carousel({
@@ -553,7 +563,7 @@
 
 
 </script>
-<script src="{{asset("assets/")}}/js/magnific-popup.js" type="text/javascript"></script>
+
 <!--tabs-->
 <script>
 

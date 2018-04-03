@@ -33,14 +33,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group form-md-line-input col-xs-3">
-                            <select name="money" class="form-control">
-                                <option value="0">select</option>
-                                <option value="1">E-PIN</option>
-                                <option value="2">E-Moner</option>
-                                <option value="2">Both</option>
-                            </select>
-                        </div>
+
                         <div class="form-group form-md-line-input col-xs-2">
                             <button type="submit" class="btn btn-primary label-sm">
                                 <span class="glyphicon glyphicon-search"></span>Filter
