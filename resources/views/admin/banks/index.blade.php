@@ -29,45 +29,45 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="form-group form-md-line-input">
-                                <div class="col-xs-6">
-                                    <label>E-PIN</label>
-                                    <input class="form-control" type="number" name="e_pin">
-                                    <div class="form-group form-md-line-input">
-                                        <div class="col-xs-12">
-                                            <label class="radio-inline pull-right">
-                                                <input checked type="radio" value="2"
-                                                       name="e_pin_statement">Depit
-                                            </label>
-                                            <label class="radio-inline pull-left">
-                                                <input type="radio" value="1"
-                                                       name="e_pin_statement">Credit
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label>E-MONEY</label>
-                                    <input class="form-control" type="number" name="e_money">
-                                    <div class="form-group form-md-line-input">
-                                        <div class="col-xs-12">
-                                            <label class="radio-inline pull-right">
-                                                <input checked type="radio" value="2"
-                                                       name="e_money_statement">Depit
-                                            </label>
-                                            <label class="radio-inline pull-left">
-                                                <input type="radio" value="1"
-                                                       name="e_money_statment">Credit
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input required type="number" name="e_pin" class="form-control"
+                                       id="form_control_1"
+                                       placeholder="E-PIN">
+                                <span class="help-block">Writing...</span>
                             </div>
-                            <div class="form-group form-md-line-input text-center">
 
-                                    <button class="btn btn-success" type="submit">Transfer</button>
+                            <div class="form-group form-md-line-input">
+                                <input required type="radio" name="e_pin_statement" value="2"
+                                       id="form_control_1">
+                                <label for="form_control_1 input-lg">Depit</label>
 
+                                <input required type="radio" name="e_pin_statement" value="1"
+                                       id="form_control_1">
+                                <label for="form_control_1 input-lg">Credit</label>
                             </div>
+
+
+                            <div class="form-group form-md-line-input">
+                                <input required type="number" name="e_money" class="form-control"
+                                       id="form_control_1"
+                                       placeholder="E-MONEY">
+                                <span class="help-block">Writing...</span>
+                            </div>
+
+                            <div class="form-group form-md-line-input">
+                                <input required type="radio" name="e_money_statment" value="2"
+                                       id="form_control_1">
+                                <label for="form_control_1 input-lg">Depit</label>
+
+                                <input required type="radio" name="e_money_statment" value="1"
+                                       id="form_control_1">
+                                <label for="form_control_1 input-lg">Credit</label>
+                            </div>
+
+
+                            <button class="btn btn-success" type="submit">Transfer</button>
+
                         </div>
 
                     </form>
@@ -82,7 +82,7 @@
                                 <th>From / To</th>
                                 <th>Value</th>
                                 <th>Date / Time</th>
-                                <th></th>
+                                <th>Balance</th>
 
                             </tr>
                             </thead>
@@ -111,14 +111,6 @@
                                     <td>{{$item->created_at}}</td>
                                     <td class="blnc">{{$item->e_pin_balance}} EG</td>
 
-                                    <td>
-                                        <div class="col-sm-12">
-                                            <a href="#"
-                                               class="edit-modal btn btn-warning label-sm">
-                                                History
-                                            </a>
-                                        </div>
-                                    </td>
                                 </tr>
                             @endforeach
 

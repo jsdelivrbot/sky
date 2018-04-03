@@ -49,6 +49,7 @@
 
                                     <button type="submit" class="btn blue">Add</button>
                                 </div>
+
                             </form>
                         </div>
 
