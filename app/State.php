@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    protected $fillable = [
-        'country_id', 'name'
-    ];
-
     public $timestamps = false;
+    protected $fillable = [
+        'name_ar',
+        'name_en',
+        'country_id',
+    ];
 
     public function country()
     {

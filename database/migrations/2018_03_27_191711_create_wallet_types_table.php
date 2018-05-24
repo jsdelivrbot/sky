@@ -15,8 +15,8 @@ class CreateWalletTypesTable extends Migration
     {
         Schema::create('wallet_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-
+            $table->string('name_ar'); //admin transfer register
+            $table->string('name_en');
         });
     }
 

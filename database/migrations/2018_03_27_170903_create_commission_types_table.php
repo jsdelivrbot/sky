@@ -15,7 +15,8 @@ class CreateCommissionTypesTable extends Migration
     {
         Schema::create('commission_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name'); // direct , admin , etc
+            $table->string('name_ar'); // direct , admin , etc
+            $table->string('name_en'); // direct , admin , etc
         });
     }
 

@@ -100,6 +100,49 @@
                         </div>
                     </li>
 
+                    <li class="about nav-item  ">
+                        <a href="{{url("admin/about")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">About</span>
+                        </a>
+                    </li>
+
+                    <li class="process nav-item  ">
+                        <a href="{{url("admin/processes")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Process</span>
+                        </a>
+                    </li>
+
+                    <li class="infinity nav-item  ">
+                        <a href="{{url("admin/infinity")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Infinity</span>
+                        </a>
+                    </li>
+
+                    <li class="infinity_founders nav-item  ">
+                        <a href="{{url("admin/infinity_founders")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Infinity Founders</span>
+                        </a>
+                    </li>
+
+                    <li class="events nav-item  ">
+                        <a href="{{url("admin/events")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Events</span>
+                        </a>
+                    </li>
+
+                    <li class="e_learning nav-item  ">
+                        <a href="{{url("admin/e_learning")}}" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">E-learning</span>
+                        </a>
+                    </li>
+
+
                     <li class="categories nav-item  ">
                         <a href="{{url("admin/categories")}}" class="nav-link nav-toggle">
                             <i class="icon-diamond"></i>

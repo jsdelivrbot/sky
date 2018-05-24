@@ -10,7 +10,7 @@ Route::post('/products/filter', 'ProductsController@filter');
 Route::get('/about', 'HomeController@about');
 Route::get('/infinity', 'HomeController@infinity');
 Route::get('/founders', 'HomeController@founders');
-Route::get('/members_events', 'HomeController@members_events');
+Route::get('/events', 'HomeController@members_events');
 Route::get('/processes', 'HomeController@processes');
 Route::get('/contact', 'HomeController@contact');
 Route::post('/contact', 'HomeController@add_contact');
@@ -25,6 +25,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/wallet/filter', 'WalletController@filter');
     Route::post('/transfer', 'WalletController@transfer');
 });
+
+Route::get('/team', 'TeamController@index');
+Route::post('/addDownLine', 'TeamController@store');
+Route::post('/order', 'OrdersController@index');
+Route::get('/wallet', 'WalletController@index');
+Route::post('/wallet/filter', 'WalletController@filter');
+Route::post('/transfer', 'WalletController@transfer');
 
 
 Route::prefix('admin')->group(function () {
@@ -43,6 +50,15 @@ Route::prefix('admin')->group(function () {
     Route::post('/products_filter', 'admin\ProductsController@filter');
     Route::post('/orders_filter', 'admin\OrdersController@filter');
     Route::post('/banks_transfer', 'admin\BanksController@transfer');
+
+    Route::resource('/about', 'admin\AboutController');
+    Route::resource('/processes', 'admin\ProcessesController');
+    Route::resource('/infinity', 'admin\InfinityController');
+    Route::resource('/infinity_founders', 'admin\AboutController');
+    Route::resource('/founders', 'admin\Infinity_foundersController');
+    Route::resource('/events', 'admin\EventsController');
+    Route::resource('/e_learning', 'admin\AboutController');//
+
 
 });
 

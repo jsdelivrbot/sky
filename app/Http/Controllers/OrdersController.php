@@ -52,13 +52,10 @@ class OrdersController extends Controller
                 $wallet->user_id = $user->id;
                 $wallet->e_type_id = 1;
                 $wallet->transaction_id = rand(999, 9999);
-                $wallet->wallet_type_id = 2;
-                $wallet->from_id = 1;
-                $wallet->to_id = $user->id;
+                $wallet->wallet_type_id = 8;
                 $wallet->value = $product->price;
-                $wallet->statement = 1;
-
-                $user->e_money_balance = $user->e_money_balance - $product->price;
+                $wallet->statement = 2;
+                //    $user->e_money_balance = $user->e_money_balance - $product->price;
                 $user->e_pin_balance = $user->e_pin_balance - $product->shipping_fees;
 
                 $wallet->e_money_balance = auth()->user()->e_money_balance;
@@ -70,40 +67,22 @@ class OrdersController extends Controller
                 $wallet = new Wallet;
                 $wallet->user_id = $user->id;
                 $wallet->e_type_id = 2;
-
                 $wallet->transaction_id = rand(999, 9999);
-                $wallet->wallet_type_id = 1;
-                $wallet->from_id = 1;
-                $wallet->to_id = $user->id;
+                $wallet->wallet_type_id = 8;
                 $wallet->value = $product->shipping_fees;
-                $wallet->statement = 1;
+                $wallet->statement = 2;
 
                 $user->e_money_balance = $user->e_money_balance - $product->price;
-                $user->e_pin_balance = $user->e_pin_balance - $product->shipping_fees;
+                //   $user->e_pin_balance = $user->e_pin_balance - $product->shipping_fees;
 
                 $wallet->e_money_balance = auth()->user()->e_money_balance;
                 $wallet->e_pin_balance = auth()->user()->e_pin_balance;
 
+                $user->qualified = 1;
                 $wallet->save();
+                $user->save();
                 // end wallet
 
-                //  parent e-money wallet
-
-             /* $wallet = new Wallet;
-                $wallet->user_id = $parent->id;
-                $wallet->e_type_id = 2;
-
-                $wallet->transaction_id = rand(999, 9999);
-                $wallet->wallet_type_id = 1;
-                $wallet->from_id = 0;
-                $wallet->to_id = $parent->id;
-                $wallet->value = 100;
-                $wallet->statement = 2;
-
-                $wallet->e_money_balance = $parent->e_money_balance;
-                $wallet->e_pin_balance = $parent->e_pin_balance;
-
-                $wallet->save();*/
 
             } else {
 
@@ -117,23 +96,16 @@ class OrdersController extends Controller
                 $wallet = new Wallet;
                 $wallet->user_id = $user->id;
                 $wallet->e_type_id = 2;
-
                 $wallet->transaction_id = rand(999, 9999);
-                $wallet->wallet_type_id = 1;
-                $wallet->from_id = 1;
-                $wallet->to_id = $parent->id;
+                $wallet->wallet_type_id = 5;
                 $wallet->value = $product->price;
                 $wallet->statement = 2;
-
-
                 $wallet->e_money_balance = $user->e_money_balance;
                 $wallet->e_pin_balance = $user->e_pin_balance;
-
+                $user->save();
                 $wallet->save();
-            }
 
-            $user->qualified = 1;
-            $user->save();
+            }
 
             return redirect('/');
 

@@ -8,6 +8,7 @@ class Wallet_type extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'name',
+        'name_ar',
+        'name_en',
     ];
 }

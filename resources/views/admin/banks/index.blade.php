@@ -23,44 +23,46 @@
                         <div class="form-body">
 
                             <div class="form-group form-md-line-input">
-                                <select class="multipleSelect " multiple name="language">
+                                <select required class="multipleSelect " multiple name="language">
+                                   @php $i =0; @endphp
                                     @foreach($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        <option @if($i==0) selected @endif value="{{$user->id}}">{{$user->name}}</option>
+                                        @php $i++; @endphp
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input required type="number" name="e_pin" class="form-control"
+                                <input type="number" name="e_pin" class="form-control"
                                        id="form_control_1"
                                        placeholder="E-PIN">
                                 <span class="help-block">Writing...</span>
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input required type="radio" name="e_pin_statement" value="2"
+                                <input type="radio" name="e_pin_statement" value="2"
                                        id="form_control_1">
                                 <label for="form_control_1 input-lg">Depit</label>
 
-                                <input required type="radio" name="e_pin_statement" value="1"
+                                <input type="radio" name="e_pin_statement" value="1"
                                        id="form_control_1">
                                 <label for="form_control_1 input-lg">Credit</label>
                             </div>
 
 
                             <div class="form-group form-md-line-input">
-                                <input required type="number" name="e_money" class="form-control"
+                                <input type="number" name="e_money" class="form-control"
                                        id="form_control_1"
                                        placeholder="E-MONEY">
                                 <span class="help-block">Writing...</span>
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input required type="radio" name="e_money_statment" value="2"
+                                <input type="radio" name="e_money_statement" value="2"
                                        id="form_control_1">
                                 <label for="form_control_1 input-lg">Depit</label>
 
-                                <input required type="radio" name="e_money_statment" value="1"
+                                <input type="radio" name="e_money_statement" value="1"
                                        id="form_control_1">
                                 <label for="form_control_1 input-lg">Credit</label>
                             </div>
@@ -142,7 +144,6 @@
 
 @section('js')
     <script src="{{asset("assets/")}}/fastselect/dist/fastselect.standalone.js"></script>
-
 
     <script>
         $("#dash").removeClass("active");

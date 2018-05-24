@@ -39,7 +39,7 @@
                                 <ul class="sub-menu">
                                     <li><a href="{{url('/infinity')}}">What’s Infinity</a></li>
                                     <li><a href="{{url('/founders')}}">Infinity Founders</a></li>
-                                    <li><a href="{{url('/members_events')}}">Our Events</a></li>
+                                    <li><a href="{{url('/events')}}">Our Events</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{url('/contact')}}">Contact us</a></li>

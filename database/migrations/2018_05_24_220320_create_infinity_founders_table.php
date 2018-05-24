@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeamsTable extends Migration
+class CreateInfinityFoundersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('infinity_founders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('upLine_id');
-            $table->integer('downLine_id');
-            $table->integer('position_id');
+            $table->string('name');
+            $table->string('image');
+            $table->string('position');
+
         });
     }
 
@@ -28,6 +29,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('infinity_founders');
     }
 }

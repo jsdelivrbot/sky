@@ -9,8 +9,10 @@ class Product extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'desc',
+        'name_ar',
+        'name_en',
+        'desc_ar',
+        'desc_en',
         'price',
         'shipping_fees',
         'commission',

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use PragmaRX\Countries\Package\Countries;
+use Faker\Factory as Faker;
 
 class CategoriesSeeder extends Seeder
 {
@@ -12,7 +12,18 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Category::create(['name' => 'Category']);
-        \App\Sub_categoty::create(['name' => 'Sub_categoty', 'category_id' => 1]);
+        $faker = Faker::create();
+
+        \App\Category::create([
+            'image' => $faker->imageUrl($width = 240, $height = 180),
+            'name_ar' => 'Category_ar',
+            'name_en' => 'Category_en'
+        ]);
+        \App\Sub_categoty::create([
+            'image' => $faker->imageUrl($width = 240, $height = 180),
+            'name_ar' => 'Sub_categoty_ar',
+            'name_en' => 'Sub_categoty_en',
+            'category_id' => 1,
+        ]);
     }
 }

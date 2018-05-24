@@ -18,9 +18,10 @@ class ProductsSeeder extends Seeder
         foreach (range(0, 9) as $index) {
 
             \App\Product::create([
-
-                'name' => $faker->name,
-                'desc' => $faker->paragraph(10),
+                'name_en' => $faker->name,
+                'name_ar' => $faker->name,
+                'desc_ar' => $faker->paragraph(10),
+                'desc_en' => $faker->paragraph(10),
                 'price' => $faker->numberBetween(999, 9999),
                 'shipping_fees' => $faker->numberBetween(999, 9999),
                 'commission' => $faker->numberBetween(999, 9999),

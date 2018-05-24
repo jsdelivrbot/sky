@@ -12,7 +12,7 @@ class ProductTypesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Product_type::create(['name' => 'Qulified']);
-        \App\Product_type::create(['name' => 'Premium']);
+        \App\Product_type::create(['name_en' => 'Qulified', 'name_ar' => 'عادى']);
+        \App\Product_type::create(['name_en' => 'Premium', 'name_ar' => 'مميز']);
     }
 }

@@ -12,8 +12,11 @@ class WalletTypesSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['admin', 'transfer', 'register', 'shipping', 'premium_product', 'renewal' ,'commissions' ,'qualified_product'];
+        $types = ['admin', 'transfer', 'register', 'shipping', 'premium_product', 'renewal', 'commissions', 'qualified_product'];
         foreach ($types as $type)
-            \App\Wallet_type::create(['name' => $type]);
+            \App\Wallet_type::create([
+                'name_ar' => 'type_ar',
+                'name_en' => $type
+            ]);
     }
 }

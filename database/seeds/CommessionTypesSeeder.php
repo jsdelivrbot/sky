@@ -12,6 +12,6 @@ class CommessionTypesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Commission_type::create(['name' => 'Commission_type']);
+        \App\Commission_type::create(['name_ar' => 'Commission_type','name_en' => 'Commission_type']);
     }
 }

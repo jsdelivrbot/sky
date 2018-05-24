@@ -12,6 +12,6 @@ class UserStatusSeeder extends Seeder
      */
     public function run()
     {
-        \App\User_status::create(['name' => 'Active']);
+        \App\User_status::create(['name_ar' => 'Active','name_en' => 'Active']);
     }
 }

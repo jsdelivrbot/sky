@@ -12,7 +12,7 @@ class BanksController extends Controller
 
     public function index()
     {
-        $items = Wallet::paginate(10);
+        $items = Wallet::paginate(5);
         $users = User::all();
         return view('admin.banks.index', compact('items', 'users'));
     }
@@ -71,17 +71,17 @@ class BanksController extends Controller
                 $wallet->statement = $request->e_pin_statement;
                 if ($request->e_pin_statement == 1) {
                     $user->e_pin_balance = $user->e_pin_balance + $request->e_pin;
-                    $user->e_money_balance = $user->e_money_balance + $request->e_pin;
                 } else {
                     $user->e_pin_balance = $user->e_pin_balance - $request->e_pin;
-                    $user->e_money_balance = $user->e_money_balance - $request->e_pin;
                 }
 
                 $wallet->e_pin_balance = $user->e_pin_balance;
                 $wallet->e_money_balance = $user->e_money_balance;
                 $wallet->save();
+                $user->save();
 
             }
+
             if ($request->e_money) {
                 $user = User::find($user_id);
                 $wallet = new Wallet;
@@ -89,18 +89,17 @@ class BanksController extends Controller
                 $wallet->e_type_id = 2;
                 $wallet->transaction_id = rand(999, 9999);
                 $wallet->wallet_type_id = 1;
-                $wallet->value = $request->e_pin;
+                $wallet->value = $request->e_money;
                 $wallet->statement = $request->e_money_statement;
                 if ($request->e_money_statement == 1) {
-                    $user->e_pin_balance = $user->e_pin_balance + $request->e_pin;
-                    $user->e_money_balance = $user->e_money_balance + $request->e_pin;
+                    $user->e_money_balance = $user->e_money_balance + $request->e_money;
                 } else {
-                    $user->e_pin_balance = $user->e_pin_balance - $request->e_pin;
-                    $user->e_money_balance = $user->e_money_balance - $request->e_pin;
+                    $user->e_money_balance = $user->e_money_balance - $request->e_money;
                 }
 
                 $wallet->e_pin_balance = $user->e_pin_balance;
                 $wallet->e_money_balance = $user->e_money_balance;
+                $user->save();
                 $wallet->save();
             }
 

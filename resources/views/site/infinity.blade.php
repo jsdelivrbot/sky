@@ -1,70 +1,77 @@
 @extends('layouts.container')
 @section('title')SkyMax @endsection
 @section('content')
-	<div id="page-inside6" class="insd">
-    	<div class="top-bg"></div>
-          <div class="logo">
-            	<a href="{{asset("assets/")}}/index.html" target="_self"><img src="{{asset("assets/")}}/img/logo.png"  alt="SkyMax"></a>
+    <div id="page-inside6" class="insd">
+        <div class="top-bg"></div>
+        <div class="logo">
+            <a href="{{asset("assets/")}}/index.html" target="_self"><img src="{{asset("assets/")}}/img/logo.png"
+                                                                          alt="SkyMax"></a>
+        </div>
+
+        <div class="container">
+            <div class="event-title">
+                <h1>What is Infinity</h1>
+                <p>If there's a particular spot in your website where you can win people over, it's your About Us page.
+                    Here's how to make it look good.
+                </p>
             </div>
-          
-		  <div class="container">
-        	<div class="event-title">
-            	<h1>What is Infinity</h1>
-                <p>If there's a particular spot in your website where you can win people over, it's your About Us page. Here's how to make it look good.
-</p>
-            </div>
-           
-          </div>
-		
+
+        </div>
+
     </div>
     <div class="contents">
-    	<div class="container">
-            <div class="col-sm-12 col-md-12 col-lg-12 no-pd"> 
-            	<div class="padd-all-30">
-	  			<div class="col-md-7 col-sm-6 col-xs-12">
-                   	<h2>What is Infinity</h2>
-                   	<p>Hi There! Thanks for visiting our website, we are here to help you in case you have any query, Recommendation, Feedback while using our platform.Fill in this form and we will get back to you as soon as possible. Our global team is standing by 24/7 in 11 different languages to help make things right with rebooking assistance, refunds, reimbursements, our $1 million dollar Host Guarantee, and insurance programs for both homes and experiences. Just reach out if there’s anything you need.
 
-</p>
+        @php $i = 0; @endphp
+        @foreach($items as $item)
+            @if($i %2 == 0)
+                <div class="container">
+                    <div class="col-sm-12 col-md-12 col-lg-12 no-pd">
+                        <div class="padd-all-30">
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <h2>{{$item->title_en}}</h2>
+                                <p>{{$item->title_ar}}</p>
+                            </div>
+                            @if($item->media_type_id == 1)
+                                <div class="col-md-5 col-sm-6 col-xs-12">
+                                    <img src="{{$item->media}}" class="img-responsive img-thumbnail">
+                                </div>
+                            @else
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <video class="abt-vid" controls autoplay name="media">
+                                        <source src="{{$item->media}}" type="video/mp4">
+                                    </video>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5 col-sm-6 col-xs-12">
-           	    <img src="{{asset("assets/")}}/img/shipping.jpg" class="img-responsive img-thumbnail">
+            @else
+                <div class="blue-bg">
+                    <div class="container">
+                        <div class="col-sm-12 col-md-12 col-lg-12 no-pd">
+                            <div class="padd-all-30">
+                                <div class="col-md-7 col-sm-6 col-xs-12">
+                                    <h2>{{$item->title_en}}</h2>
+                                    <p>{{$item->title_ar}}</p>
+                                </div>
+                                @if($item->media_type_id == 1)
+                                    <div class="col-md-5 col-sm-6 col-xs-12">
+                                        <img src="{{$item->media}}" class="img-responsive img-thumbnail">
+                                    </div>
+                                @else
+                                    <div class="col-md-6 col-xs-12 col-sm-6">
+                                        <video class="abt-vid" controls autoplay name="media">
+                                            <source src="{{$item->media}}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
-		  </div>
-        </div>
-        <div class="blue-bg">
-        	<div class="container">
-             <div class="col-md-6 col-xs-12 col-sm-6">
-              <video class="abt-vid" controls autoplay name="media">
-              <source src="{{asset("assets/")}}/img/mov_bbb.mp4" type="video/mp4">
-              </video>
-             </div>
-             
-             <div class="col-md-6 col-xs-12 col-sm-6 white">
-              <h3>What is Infinity</h3>
-              <p>Hi There! Thanks for visiting our website, we are here to help you in case you have any query, Recommendation, Feedback while using our platform.Fill in this form and we will get back to you as soon as possible. Our global team is standing by 24/7 in 11 different languages to help make things right with rebooking assistance, refunds, reimbursements, our $1 million dollar Host Guarantee, and insurance programs for both homes and experiences. Just reach out if there’s anything you need.
+            @endif
+            @php $i++ @endphp
+        @endforeach
 
-</p>
-             </div>
-            
-            </div>
-        </div>
-        <div class="container">
-            <div class="col-sm-12 col-md-12 col-lg-12 no-pd"> 
-             <div class="padd-all-30">
-            	<div class="col-md-5 col-sm-6 col-xs-12">
-           	    <img src="{{asset("assets/")}}/img/shipping.jpg" class="img-responsive img-thumbnail">
-                </div>
-	  			<div class="col-md-7 col-sm-6 col-xs-12">
-                   	<h2>What is Infinity</h2>
-                   	<p>Hi There! Thanks for visiting our website, we are here to help you in case you have any query, Recommendation, Feedback while using our platform.Fill in this form and we will get back to you as soon as possible. Our global team is standing by 24/7 in 11 different languages to help make things right with rebooking assistance, refunds, reimbursements, our $1 million dollar Host Guarantee, and insurance programs for both homes and experiences. Just reach out if there’s anything you need.
-
-</p>
-                </div>
-             </div>   
-		  </div>
-        </div>
-    
     </div>
 @endsection

@@ -9,7 +9,9 @@ class Sub_categoty extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
+        'image',
+        'name_ar',
+        'name_en',
         'category_id',
     ];
 
