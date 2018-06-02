@@ -42,6 +42,9 @@
                                     <li><a href="{{url('/events')}}">Our Events</a></li>
                                 </ul>
                             </li>
+                            @auth
+                                <li><a href="{{url('/e_learning')}}">E-Learning</a></li>
+                            @endauth
                             <li><a href="{{url('/contact')}}">Contact us</a></li>
                         </ul>
                     </nav>
@@ -50,16 +53,16 @@
                 <div class="col-md-4 col-sm-3 col-xs-12 no-pd text-right">
                     <ul class="toplist">
                         @guest
-                        <li><a href="#squarespaceModal" data-toggle="modal"><i class="fa fa-user"></i> Login</a>
-                        </li>
+                            <li><a href="#squarespaceModal" data-toggle="modal"><i class="fa fa-user"></i> Login</a>
+                            </li>
                         @endguest
                         @auth
-                        <li>
-                            <p class="white"><i class="fa fa-user"></i> Welcome, {{auth()->user()->name}}
-                                <span class="brs"><a href="#squarespaceModal-4" data-toggle="modal"><i
-                                                class="fa fa-bars"></i></a></span>
-                            </p>
-                        </li>
+                            <li>
+                                <p class="white"><i class="fa fa-user"></i> Welcome, {{auth()->user()->name}}
+                                    <span class="brs"><a href="#squarespaceModal-4" data-toggle="modal"><i
+                                                    class="fa fa-bars"></i></a></span>
+                                </p>
+                            </li>
                         @endauth
 
                     </ul>
@@ -212,8 +215,8 @@
                                                 <select required id="country" class="form-control selecty"
                                                         name="country">
                                                     <option value="0" disabled selected>Country</option>
-                                                    @foreach($countries as $country)
-                                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                                    @foreach(\App\Country::all() as $country)
+                                                        <option value="{{$country->id}}">{{$country->name_en}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -223,8 +226,8 @@
                                                         name="state_id">
 
                                                     <option value="0" disabled selected>State</option>
-                                                    @foreach($countries as $country)
-                                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                                    @foreach(\App\State::all() as $state)
+                                                        <option value="{{$state->id}}">{{$state->name_en}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -376,64 +379,64 @@
     </div>
 </div>
 @auth
-<div class="modal fade" id="squarespaceModal-6" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+    <div class="modal fade" id="squarespaceModal-6" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="my-menu my-profile clearfix">
-                    <button type="button" class="close back" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">Back</span>
-                    </button>
-                    <div class="col-md-12 col-xs-12">
-                        <h3 class="menu-title">My Profile</h3>
-                        <div class="clearfix"></div>
-                        @auth
+                <div class="modal-body">
+                    <div class="my-menu my-profile clearfix">
+                        <button type="button" class="close back" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">Back</span>
+                        </button>
                         <div class="col-md-12 col-xs-12">
-                            <h3 class="ylw">Account Information:</h3>
-                            <p><strong>Username:</strong> <span>{{auth()->user()->user_name}}</span></p>
-                            <p><strong>Account ID:</strong> <span>{{auth()->user()->unique_id}}</span></p>
-                            <p><strong>E-Mail:</strong> <span>{{auth()->user()->email}}</span></p>
-                            <table class="tbl">
-                                <tr>
-                                    <td><strong>Password:</strong></td>
-                                    <td><p class="meterReadings"><span id="meter01" contenteditable="false"
-                                                                       class="meterEdit">******</span></p></td>
-                                    <td><p class="unionPencil" data-edit-target="meter01"><span
-                                                    class="fa fa-pencil"></span></p></td>
-                                </tr>
-                            </table>
-                            <table class="tbl">
-                                <tr>
-                                    <td><strong>Inside Password:</strong></td>
-                                    <td><p class="meterReadings"><span id="meter02" contenteditable="false"
-                                                                       class="meterEdit">******</span></p></td>
-                                    <td><p class="unionPencil" data-edit-target="meter02"><span
-                                                    class="fa fa-pencil"></span></p></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-12 col-xs-12">
-                            <h3 class="ylw">Account Information:</h3>
-                            <p><strong>Name:</strong> <span>{{auth()->user()->name}}</span></p>
-                            <p><strong>Address:</strong>
-                                <span>@if(auth()->user()->addresses){{auth()->user()->addresses->first()->address}}@endif</span>
-                            </p>
-                            <p><strong>Phone:</strong> <span>{{auth()->user()->phone}}</span></p>
-                            <p><strong>Date of Birth:</strong>
-                                <span>{{date('Y-m-d',auth()->user()->birth_date)}}</span>
-                            </p>
-                            <p><strong>National ID:</strong> <span>{{auth()->user()->national_id}}</span></p>
+                            <h3 class="menu-title">My Profile</h3>
+                            <div class="clearfix"></div>
+                            @auth
+                                <div class="col-md-12 col-xs-12">
+                                    <h3 class="ylw">Account Information:</h3>
+                                    <p><strong>Username:</strong> <span>{{auth()->user()->user_name_en}}</span></p>
+                                    <p><strong>Account ID:</strong> <span>{{auth()->user()->unique_id}}</span></p>
+                                    <p><strong>E-Mail:</strong> <span>{{auth()->user()->email}}</span></p>
+                                    <table class="tbl">
+                                        <tr>
+                                            <td><strong>Password:</strong></td>
+                                            <td><p class="meterReadings"><span id="meter01" contenteditable="false"
+                                                                               class="meterEdit">******</span></p></td>
+                                            <td><p class="unionPencil" data-edit-target="meter01"><span
+                                                            class="fa fa-pencil"></span></p></td>
+                                        </tr>
+                                    </table>
+                                    <table class="tbl">
+                                        <tr>
+                                            <td><strong>Inside Password:</strong></td>
+                                            <td><p class="meterReadings"><span id="meter02" contenteditable="false"
+                                                                               class="meterEdit">******</span></p></td>
+                                            <td><p class="unionPencil" data-edit-target="meter02"><span
+                                                            class="fa fa-pencil"></span></p></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-12 col-xs-12">
+                                    <h3 class="ylw">Account Information:</h3>
+                                    <p><strong>Name:</strong> <span>{{auth()->user()->name}}</span></p>
+                                    <p><strong>Address:</strong>
+                                        <span>@if(auth()->user()->addresses){{auth()->user()->addresses->first()->address}}@endif</span>
+                                    </p>
+                                    <p><strong>Phone:</strong> <span>{{auth()->user()->phone}}</span></p>
+                                    <p><strong>Date of Birth:</strong>
+                                        <span>{{date('Y-m-d',auth()->user()->birth_date)}}</span>
+                                    </p>
+                                    <p><strong>National ID:</strong> <span>{{auth()->user()->national_id}}</span></p>
 
+                                </div>
+                            @endauth
                         </div>
-                        @endauth
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endauth
 <div class="modal fade" id="squarespaceModal-3" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
@@ -515,7 +518,7 @@
 
 <div id="url" data-url="{{url('')}}"></div>
 @auth
-<div id="user_id" data-user_id="{{auth()->user()->id}}"></div>
+    <div id="user_id" data-user_id="{{auth()->user()->id}}"></div>
 @endauth
 <!--modals-->
 <script src="{{asset("assets/")}}/js/jquery-3.1.0.min.js"></script>
@@ -538,6 +541,7 @@
     function submit() {
         $(this).closest('form').submit();
     }
+
     jQuery(document).ready(function ($) {
 
         $('#myCarousel').carousel({

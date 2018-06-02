@@ -41,7 +41,7 @@
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="title_ar" class="form-control"
                                                id="form_control_1" value="{{$item->title_ar}}"
-                                               placeholder="name ">
+                                               placeholder="name_en ">
                                         <label for="form_control_1 input-lg"> Title arabic</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
@@ -49,39 +49,33 @@
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="title_en" class="form-control"
                                                id="form_control_1" value="{{$item->title_en}}"
-                                               placeholder="name ">
+                                               placeholder="name_en ">
                                         <label for="form_control_1 input-lg"> Title english</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_en" name="text_en"
-                                                  class="form-control">{{$item->text_en}}</textarea>
-                                        <label for="text_en"> Text english</label>
+                                        <textarea required id="desc_en" name="desc_en"
+                                                  class="form-control">{{$item->desc_en}}</textarea>
+                                        <label for="desc_en"> Text english</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_ar" name="text_ar"
-                                                  class="form-control"> {{$item->text_ar}}</textarea>
-                                        <label for="text_ar"> Text english</label>
+                                        <textarea required id="desc_ar" name="desc_ar"
+                                                  class="form-control"> {{$item->desc_ar}}</textarea>
+                                        <label for="desc_ar"> Text english</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <label for="media_type">Image</label>
-                                        <input required id="media_type" name="media_type_id" type="radio"
-                                               @if($item->media_type_id ==1)checked @endif value="1">
-
-                                        <input required id="media_type" name="media_type_id" type="radio"
-                                               @if($item->media_type_id ==2)checked @endif value="2">
-                                        <label for="media_type">Video</label>
+                                        <input required id="media" name="video" type="file" class="form-control">
+                                        <label for="media"> Video </label>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <input  id="media" name="media" type="file" class="form-control">
-                                        <label for="media">Media File</label>
-                                        <span class="help-block">Writing...</span>
+                                        <input required id="thumb" name="thumb" type="file" class="form-control">
+                                        <label for="thumb"> Thumb </label>
                                     </div>
 
                                     <button type="submit" class="btn blue">Edit</button>

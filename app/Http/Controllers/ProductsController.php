@@ -37,10 +37,9 @@ class ProductsController extends Controller
         $products = Product::where('id', '!=', 0);
 
         if ($request->product_type_id) {
-            if ($request->product_type_id != 3)
+            if ($request->product_type_id != 0)
                 $products = $products->where('product_type_id', $request->product_type_id);
             session()->put('product_type_id', $request->get('product_type_id'));
-
         }
         if ($request->category_id) {
             $products = $products->whereIn('category_id', $request->category_id);

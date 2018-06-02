@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Commission;
-use App\Country;
+use App\E_learning;
 use App\Order;
 use App\Product;
-use App\Sub_categoty;
 use App\User;
 use App\Wallet;
 use Illuminate\Http\Request;
@@ -16,6 +14,7 @@ class OrdersController extends Controller
 {
     public function index(Request $request)
     {
+
         // product shipping fees from e-pin
         // product price fees from e-money
         $user = auth()->user();
@@ -24,6 +23,7 @@ class OrdersController extends Controller
 
 
         if ($user->e_money_balance > $product->price) {
+
             $order = new Order();
             $order->product_id = $request->product_id;
             $order->user_id = $user->id;
@@ -78,13 +78,53 @@ class OrdersController extends Controller
                 $wallet->e_money_balance = auth()->user()->e_money_balance;
                 $wallet->e_pin_balance = auth()->user()->e_pin_balance;
 
+                if (!$user->qualified) {
+                    $videos = Product::where('product_type_id', 3)->get();
+                    if ($videos[0]) {
+                        $e = new E_learning();
+                        $e->user_id = $user->id;
+                        $e->product_id = $videos[0]['id'];
+                        $e->save();
+                    }
+                    if ($videos[1]) {
+                        $e = new E_learning();
+                        $e->user_id = $user->id;
+                        $e->product_id = $videos[1]['id'];
+                        $e->save();
+                    }
+                }
+
                 $user->qualified = 1;
                 $wallet->save();
                 $user->save();
                 // end wallet
 
 
-            } else {
+            } elseif ($product->product_type_id == 2) {
+
+                $user->e_money_balance = $user->e_money_balance - $product->price;
+                $commision = new Commission;
+                $commision->user_id = $user->id;
+                $commision->value = $product->commission;
+                $commision->commission_type_id = 3;
+                $commision->save();
+
+                $wallet = new Wallet;
+                $wallet->user_id = $user->id;
+                $wallet->e_type_id = 2;
+                $wallet->transaction_id = rand(999, 9999);
+                $wallet->wallet_type_id = 5;
+                $wallet->value = $product->price;
+                $wallet->statement = 2;
+                $wallet->e_money_balance = $user->e_money_balance;
+                $wallet->e_pin_balance = $user->e_pin_balance;
+                $e = new E_learning();
+                $e->user_id = $user->id;
+                $e->product_id = $product->id;
+                $e->save();
+                $user->save();
+                $wallet->save();
+            } elseif ($product->product_type_id == 3) {
 
                 $user->e_money_balance = $user->e_money_balance - $product->price;
                 $commision = new Commission;
@@ -105,7 +145,25 @@ class OrdersController extends Controller
                 $user->save();
                 $wallet->save();
 
+            } else {
+                $wallet = new Wallet;
+                $wallet->user_id = $user->id;
+                $wallet->e_type_id = 2;
+                $wallet->transaction_id = rand(999, 9999);
+                $wallet->wallet_type_id = 5;
+                $wallet->value = $product->price;
+                $wallet->statement = 2;
+                $wallet->e_money_balance = $user->e_money_balance;
+                $wallet->e_pin_balance = $user->e_pin_balance;
+                $user->save();
+                $wallet->save();
+
+                $e_learning = new E_learning();
+                $e_learning->user_id = $user->id;
+                $e_learning->product_id = $product->id;
+                $e_learning->save();
             }
+
 
             return redirect('/');
 

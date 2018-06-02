@@ -41,7 +41,7 @@ Fill in this form and we will get back to you as soon as possible.</p>
             				<form action="{{url("contact")}}" method="post" role="form" class="clearfix">
                             	@csrf
                             	<div >
-                                <label>Name <em>*</em></label>
+                                <label>name_en <em>*</em></label>
                                   <div class="form-group clearfix">
                                     <input required name="name" type="text" class="effect-9 form-control" >
                                     <span class="focus-border"><i></i></span>

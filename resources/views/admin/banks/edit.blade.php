@@ -40,8 +40,8 @@
 
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="name" class="form-control"
-                                               id="form_control_1" value="{{$item->name}}"
-                                               placeholder="name ">
+                                               id="form_control_1" value="{{$item->name_en}}"
+                                               placeholder="name_en ">
                                         <label for="form_control_1 input-lg"> name</label>
                                         <span class="help-block">Writing...</span>
                                     </div>

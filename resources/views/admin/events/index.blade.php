@@ -26,9 +26,12 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>title</th>
-                                <th>text</th>
-                                <th>media</th>
+                                <th>image</th>
+                                <th>name english</th>
+                                <th>name arabic</th>
+                                <th>launch_date</th>
+                                <th>time</th>
+                                <th>address</th>
                                 <th></th>
 
                             </tr>
@@ -37,10 +40,12 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->title_en}} </td>
-                                    <td>{{$item->text_en}} </td>
-                                    <td>{{$item->media}} </td>
-
+                                    <td><img src="{{$item->image}}" width="100px" height="100px"></td>
+                                    <td>{{$item->name_en}} </td>
+                                    <td>{{$item->name_ar}} </td>
+                                    <td>{{date('Y-m-d',$item->launch_date)}}</td>
+                                    <td>from : {{date('h:i A',$item->time_from)}} To : {{date('h:i A',$item->time_to)}}</td>
+                                    <td>{{$item->address}}, {{$item->city}}, {{$item->country}}</td>
                                     <td>
                                         <div class="col-sm-12">
                                             <a href="{{url("admin/events/$item->id/edit")}}"

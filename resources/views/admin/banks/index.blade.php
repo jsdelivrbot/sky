@@ -26,7 +26,7 @@
                                 <select required class="multipleSelect " multiple name="language">
                                    @php $i =0; @endphp
                                     @foreach($users as $user)
-                                        <option @if($i==0) selected @endif value="{{$user->id}}">{{$user->name}}</option>
+                                        <option @if($i==0) selected @endif value="{{$user->id}}">{{$user->name_en}}</option>
                                         @php $i++; @endphp
                                     @endforeach
                                 </select>
@@ -92,13 +92,13 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->transaction_id}}</td>
-                                    <td>{{$item->wallet_type->name}}</td>
+                                    <td>{{$item->wallet_type->name_en}}</td>
                                     <td>
                                         @if($item->wallet_type_id == 2)
-                                            {{$item->transfer->from_user->name}}
-                                            / {{$item->transfer->to_user->name}}
+                                            {{$item->transfer->from_user->name_en}}
+                                            / {{$item->transfer->to_user->name_en}}
                                         @else
-                                            {{$item->wallet_type->name}}
+                                            {{$item->wallet_type->name_en}}
                                         @endif
                                     </td>
                                     @if($item->statement ==1)

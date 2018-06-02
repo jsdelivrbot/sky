@@ -39,13 +39,34 @@
                                 <div class="form-body">
 
                                     <div class="form-group form-md-line-input">
-                                        <input required type="text" name="name" class="form-control"
-                                               id="form_control_1" value="{{$item->name}}"
-                                               placeholder="name ">
-                                        <label for="form_control_1 input-lg"> name</label>
+                                        <select required id="category_id" name="category_id" class="form-control">
+                                            @foreach($categories as $category)
+                                                <option @if($item->category_id == $category->id) selected @endif
+                                                value="{{$category->id}}">{{$category->name_en}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="category_id"> Category </label>
+                                    </div>
+
+                                    <div class="form-group form-md-line-input">
+                                        <input required type="text" name="name_en" class="form-control"
+                                               id="name_en" placeholder="English name " value="{{$item->name_en}}">
+                                        <label for="name_en"> English name</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
+                                    <div class="form-group form-md-line-input">
+                                        <input required type="text" name="name_ar" class="form-control"
+                                               id="name_ar" placeholder="Arabic name" value="{{$item->name_ar}}">
+                                        <label for="name_ar"> Arabic name</label>
+                                        <span class="help-block">Writing...</span>
+                                    </div>
+
+                                    <div class="form-group form-md-line-input">
+                                        <input required id="image" name="image" type="file" class="form-control">
+                                        <label for="image">Image</label>
+                                        <span class="help-block">Writing...</span>
+                                    </div>
 
                                     <button type="submit" class="btn blue">Edit</button>
                                 </div>

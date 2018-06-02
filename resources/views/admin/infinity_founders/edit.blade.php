@@ -41,7 +41,7 @@
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="title_ar" class="form-control"
                                                id="form_control_1" value="{{$item->title_ar}}"
-                                               placeholder="name ">
+                                               placeholder="name_en ">
                                         <label for="form_control_1 input-lg"> Title arabic</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
@@ -49,7 +49,7 @@
                                     <div class="form-group form-md-line-input">
                                         <input required type="text" name="title_en" class="form-control"
                                                id="form_control_1" value="{{$item->title_en}}"
-                                               placeholder="name ">
+                                               placeholder="name_en ">
                                         <label for="form_control_1 input-lg"> Title english</label>
                                         <span class="help-block">Writing...</span>
                                     </div>

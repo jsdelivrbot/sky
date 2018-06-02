@@ -103,13 +103,13 @@
                                                 @foreach($e_pins as $e_pin)
                                                     <tr>
                                                         <td>{{$e_pin->transaction_id}}</td>
-                                                        <td>{{$e_pin->wallet_type->name}}</td>
+                                                        <td>{{$e_pin->wallet_type->name_en}}</td>
                                                         <td>
                                                             @if($e_pin->wallet_type_id == 2)
-                                                                {{$e_pin->transfer->from_user->name}}
-                                                                / {{$e_pin->transfer->to_user->name}}
+                                                                {{$e_pin->transfer->from_user->name_en}}
+                                                                / {{$e_pin->transfer->to_user->name_en}}
                                                             @else
-                                                                {{$e_pin->wallet_type->name}}
+                                                                {{$e_pin->wallet_type->name_en}}
                                                             @endif
                                                         </td>
                                                         @if($e_pin->statement ==1)
@@ -160,13 +160,13 @@
                                                     @if($e_pin->statement ==1)
                                                         <tr>
                                                             <td>{{$e_pin->transaction_id}}</td>
-                                                            <td>{{$e_pin->wallet_type->name}}</td>
+                                                            <td>{{$e_pin->wallet_type->name_en}}</td>
                                                             <td>
                                                                 @if($e_pin->wallet_type_id == 2)
-                                                                    {{$e_pin->transfer->from_user->name}}
-                                                                    / {{$e_pin->transfer->to_user->name}}
+                                                                    {{$e_pin->transfer->from_user->name_en}}
+                                                                    / {{$e_pin->transfer->to_user->name_en}}
                                                                 @else
-                                                                    {{$e_pin->wallet_type->name}}
+                                                                    {{$e_pin->wallet_type->name_en}}
                                                                 @endif
                                                             </td>
                                                             <td class="bl">+{{$e_pin->value}}</td>
@@ -213,13 +213,13 @@
                                                     @if($e_pin->statement !=1)
                                                         <tr>
                                                             <td>{{$e_pin->transaction_id}}</td>
-                                                            <td>{{$e_pin->wallet_type->name}}</td>
+                                                            <td>{{$e_pin->wallet_type->name_en}}</td>
                                                             <td>
                                                                 @if($e_pin->wallet_type_id == 2)
-                                                                    {{$e_pin->transfer->from_user->name}}
-                                                                    / {{$e_pin->transfer->to_user->name}}
+                                                                    {{$e_pin->transfer->from_user->name_en}}
+                                                                    / {{$e_pin->transfer->to_user->name_en}}
                                                                 @else
-                                                                    {{$e_pin->wallet_type->name}}
+                                                                    {{$e_pin->wallet_type->name_en}}
                                                                 @endif
                                                             </td>
                                                             <td class="rd">-{{$e_pin->value}}</td>
@@ -275,13 +275,13 @@
                                                 @foreach($e_moneys as $e_money)
                                                     <tr>
                                                         <td>{{$e_money->transaction_id}}</td>
-                                                        <td>{{$e_money->wallet_type->name}}</td>
+                                                        <td>{{$e_money->wallet_type->name_en}}</td>
                                                         <td>
                                                             @if($e_money->wallet_type_id == 2)
-                                                                {{$e_money->transfer->from_user->name}}
-                                                                / {{$e_money->transfer->to_user->name}}
+                                                                {{$e_money->transfer->from_user->name_en}}
+                                                                / {{$e_money->transfer->to_user->name_en}}
                                                             @else
-                                                                {{$e_money->wallet_type->name}}
+                                                                {{$e_money->wallet_type->name_en}}
                                                             @endif
                                                         </td>
                                                         @if($e_money->statement ==1)
@@ -333,13 +333,13 @@
                                                     @if($e_money->statement ==1)
                                                         <tr>
                                                             <td>{{$e_money->transaction_id}}</td>
-                                                            <td>{{$e_money->wallet_type->name}}</td>
+                                                            <td>{{$e_money->wallet_type->name_en}}</td>
                                                             <td>
                                                                 @if($e_money->wallet_type_id == 2)
-                                                                    {{$e_money->transfer->from_user->name}}
-                                                                    / {{$e_money->transfer->to_user->name}}
+                                                                    {{$e_money->transfer->from_user->name_en}}
+                                                                    / {{$e_money->transfer->to_user->name_en}}
                                                                 @else
-                                                                    {{$e_money->wallet_type->name}}
+                                                                    {{$e_money->wallet_type->name_en}}
                                                                 @endif
                                                             </td>
                                                             <td class="bl">
@@ -386,13 +386,13 @@
                                                     @if($e_money->statement ==2)
                                                         <tr>
                                                             <td>{{$e_money->transaction_id}}</td>
-                                                            <td>{{$e_money->wallet_type->name}}</td>
+                                                            <td>{{$e_money->wallet_type->name_en}}</td>
                                                             <td>
                                                                 @if($e_money->wallet_type_id == 2)
-                                                                    {{$e_money->transfer->from_user->name}}
-                                                                    / {{$e_money->transfer->to_user->name}}
+                                                                    {{$e_money->transfer->from_user->name_en}}
+                                                                    / {{$e_money->transfer->to_user->name_en}}
                                                                 @else
-                                                                    {{$e_money->wallet_type->name}}
+                                                                    {{$e_money->wallet_type->name_en}}
                                                                 @endif
                                                             </td>
                                                             <td class="rd">
@@ -476,7 +476,7 @@
                                            class="form-control " placeholder="User ID">
                                 </div>
                                 <div class="form-group col-md-6 rght">
-                                    <p id="transfer_user_name1" class="user_name "></p>
+                                    <p id="transfer_user_name1" class="user_name_en "></p>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="form-group nw-pd">

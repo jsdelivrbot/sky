@@ -24,11 +24,13 @@ class CreateProductsTable extends Migration
             $table->double('commission')->nullable();
             $table->double('quantity');
             $table->string('main_image');
+            $table->string('video')->nullable();
             $table->integer('product_type_id');
             $table->integer('sub_category_id');
             $table->integer('category_id');
             $table->integer('limit');
             $table->boolean('published');
+            $table->timestamps();
         });
     }
 

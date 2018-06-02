@@ -27,8 +27,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>title</th>
-                                <th>text</th>
-                                <th>media</th>
+                                <th>description</th>
+                                <th>thumb</th>
+                                <th>video</th>
                                 <th></th>
 
                             </tr>
@@ -38,8 +39,19 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->title_en}} </td>
-                                    <td>{{$item->text_en}} </td>
-                                    <td>{{$item->media}} </td>
+                                    <td>{{$item->desc_en}} </td>
+                                    <td>
+                                    <div class="col-xs-12">
+                                        <img src="{{$item->thumb}}" class="img-responsive img-thumbnail">
+                                    </div>
+                                    </td>
+                                    <td>
+                                    <div class="col-xs-12">
+                                        <video class="abt-vid" controls autoplay name="media">
+                                            <source src="{{$item->video}}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    </td>
 
                                     <td>
                                         <div class="col-sm-12">

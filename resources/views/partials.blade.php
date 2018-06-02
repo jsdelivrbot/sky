@@ -6,7 +6,7 @@
             <div class="person">
                 <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="">
                 <p class="name">
-                    {{$downLine->name}}
+                    {{$downLine->name_en}}
                 </p>
             </div>
         </div>

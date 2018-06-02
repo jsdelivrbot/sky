@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Category;
 use App\Product;
 use App\Http\Controllers\Controller;
+use App\Product_type;
+use App\Sub_categoty;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -11,18 +14,26 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $items = Product::paginate(10);
+        $items = Product::orderBy('id','desc')->paginate(10);
         return view('admin.products.index', compact('items'));
     }
 
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        $sub_categories = Sub_categoty::all();
+        $product_types = Product_type::all();
+        return view('admin.products.create',compact('categories','sub_categories','product_types'));
     }
 
     public function store(Request $request)
     {
-        Product::create($request->all());
+        $data = $request->all();
+        if ($request->video)
+            $data['video'] = $this->store_image($request->video);
+        if ($request->main_image)
+            $data['main_image'] = $this->store_image($request->main_image);
+        Product::create($data);
         return redirect('/admin/products');
     }
 
@@ -35,13 +46,21 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $item = Product::find($id);
-        return view('admin.products.edit', compact('item'));
+        $categories = Category::all();
+        $sub_categories = Sub_categoty::all();
+        $product_types = Product_type::all();
+        return view('admin.products.edit', compact('item','categories','sub_categories','product_types'));
     }
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
+        if ($request->video)
+            $data['video'] = $this->store_image($request->video);
+        if ($request->main_image)
+            $data['main_image'] = $this->store_image($request->main_image);
         $item = Product::find($id);
-        $item->update($request->all());
+        $item->update($data);
         return redirect('/admin/products');
     }
 

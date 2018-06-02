@@ -7,7 +7,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->cleanDatabase();
+    //    $this->cleanDatabase();
         $this->call(CategoriesSeeder::class);
         $this->call(CommessionTypesSeeder::class);
         $this->call(CountriesSeeder::class);
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         $tables = DB::select('SHOW TABLES');
         foreach ($tables as $tabelName) {
-            if ($tabelName == 'migrations') {
+            if ($tabelname_en == 'migrations') {
                 continue;
             }
             DB::table($tabelName)->truncate();

@@ -11,7 +11,7 @@ class Sub_categoriesController extends Controller
 {
     public function index()
     {
-        $items = Sub_categoty::paginate(10);
+        $items = Sub_categoty::paginate(5);
         return view('admin.sub_categories.index', compact('items'));
     }
 
@@ -23,7 +23,10 @@ class Sub_categoriesController extends Controller
 
     public function store(Request $request)
     {
-        Sub_categoty::create($request->all());
+        $data = $request->all();
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
+        Sub_categoty::create($data);
         return redirect('/admin/sub_categories');
     }
 
@@ -37,13 +40,16 @@ class Sub_categoriesController extends Controller
     {
         $item = Sub_categoty::find($id);
         $categories = Category:: all();
-        return view('admin.sub_categories.edit', compact('item', compact('categories')));
+        return view('admin.sub_categories.edit', compact('item','categories'));
     }
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
         $item = Sub_categoty::find($id);
-        $item->update($request->all());
+        $item->update($data);
         return redirect('/admin/sub_categories');
     }
 

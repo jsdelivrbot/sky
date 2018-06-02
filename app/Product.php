@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public $timestamps = false;
 
     protected $fillable = [
         'name_ar',
@@ -23,6 +22,7 @@ class Product extends Model
         'sub_category_id',
         'category_id',
         'limit',
+        'video',
     ];
 
     public function sub_category()

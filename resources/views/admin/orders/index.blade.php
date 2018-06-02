@@ -50,11 +50,11 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->product->name}} </td>
+                                    <td>{{$item->product->name_en}} </td>
                                     <td>{{$item->user->name}} </td>
                                     <td>{{$item->phone}} </td>
                                     <td>{{$item->address}} </td>
-                                    <td>{{$item->status->name}} </td>
+                                    <td>{{$item->status->name_en}} </td>
                                 </tr>
                             @endforeach
 

@@ -10,14 +10,14 @@ Route::post('/products/filter', 'ProductsController@filter');
 Route::get('/about', 'HomeController@about');
 Route::get('/infinity', 'HomeController@infinity');
 Route::get('/founders', 'HomeController@founders');
-Route::get('/events', 'HomeController@members_events');
+Route::get('/events', 'HomeController@events');
 Route::get('/processes', 'HomeController@processes');
 Route::get('/contact', 'HomeController@contact');
 Route::post('/contact', 'HomeController@add_contact');
 Route::post('/search_user_id', 'TeamController@search_user_id');
 
-
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/e_learning', 'ELearningController@index');
     Route::get('/team', 'TeamController@index');
     Route::post('/addDownLine', 'TeamController@store');
     Route::post('/order', 'OrdersController@index');
@@ -57,7 +57,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/infinity_founders', 'admin\AboutController');
     Route::resource('/founders', 'admin\Infinity_foundersController');
     Route::resource('/events', 'admin\EventsController');
-    Route::resource('/e_learning', 'admin\AboutController');//
+    Route::resource('/e_learning', 'admin\ELearningController');
 
 
 });

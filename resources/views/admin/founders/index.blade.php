@@ -39,7 +39,19 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->title_en}} </td>
                                     <td>{{$item->text_en}} </td>
-                                    <td>{{$item->media}} </td>
+                                    <td>
+                                        @if($item->media_type_id == 1)
+                                            <div class="col-xs-12">
+                                                <img src="{{$item->media}}" class="img-responsive img-thumbnail">
+                                            </div>
+                                        @else
+                                            <div class="col-xs-12">
+                                                <video class="abt-vid" controls autoplay name="media">
+                                                    <source src="{{$item->media}}" type="video/mp4">
+                                                </video>
+                                            </div>
+                                        @endif
+                                    </td>
 
                                     <td>
                                         <div class="col-sm-12">

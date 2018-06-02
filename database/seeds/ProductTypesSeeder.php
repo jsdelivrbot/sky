@@ -14,5 +14,6 @@ class ProductTypesSeeder extends Seeder
     {
         \App\Product_type::create(['name_en' => 'Qulified', 'name_ar' => 'عادى']);
         \App\Product_type::create(['name_en' => 'Premium', 'name_ar' => 'مميز']);
+        \App\Product_type::create(['name_en' => 'E-Learning', 'name_ar' => 'فيديوهات']);
     }
 }

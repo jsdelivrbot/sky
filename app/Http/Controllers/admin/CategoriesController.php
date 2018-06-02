@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $items = Category::paginate(10);
+        $items = Category::paginate(5);
 
         return view('admin.categories.index', compact('items'));
     }
@@ -23,7 +23,10 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        Category::create($request->all());
+        $data = $request->all();
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
+        Category::create($data);
         return redirect('/admin/categories');
     }
 
@@ -41,8 +44,11 @@ class CategoriesController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
         $item = Category::find($id);
-        $item->update($request->all());
+        $item->update($data);
         return redirect('/admin/categories');
     }
 

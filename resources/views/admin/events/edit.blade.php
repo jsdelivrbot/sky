@@ -39,48 +39,47 @@
                                 <div class="form-body">
 
                                     <div class="form-group form-md-line-input">
-                                        <input required type="text" name="title_ar" class="form-control"
-                                               id="form_control_1" value="{{$item->title_ar}}"
-                                               placeholder="name ">
-                                        <label for="form_control_1 input-lg"> Title arabic</label>
+                                        <input required type="text" name="name_ar" class="form-control"
+                                               id="form_control_1" value="{{$item->name_ar}}"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg"> name_en arabic</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <input required type="text" name="title_en" class="form-control"
-                                               id="form_control_1" value="{{$item->title_en}}"
-                                               placeholder="name ">
-                                        <label for="form_control_1 input-lg"> Title english</label>
+                                        <input required type="text" name="name_en" class="form-control"
+                                               id="form_control_1" value="{{$item->name_en}}"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg"> name_en english</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_en" name="text_en"
-                                                  class="form-control">{{$item->text_en}}</textarea>
-                                        <label for="text_en"> Text english</label>
+                                        <input required id="image" name="image" type="file" class="form-control">
+                                        <label for="image">image </label>
+                                    </div>
+
+                                    <div class="form-group form-md-line-input">
+                                        <input required type="date" name="launch_date" class="form-control"
+                                               id="form_control_1" value="{{date('Y-m-d',$item->launch_date)}}"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg">launch date</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_ar" name="text_ar"
-                                                  class="form-control"> {{$item->text_ar}}</textarea>
-                                        <label for="text_ar"> Text english</label>
+                                        <input required type="time" name="time_from" class="form-control"
+                                               id="form_control_1" value="{{date('h:i A',$item->time_from)}}"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg">time from</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <label for="media_type">Image</label>
-                                        <input required id="media_type" name="media_type_id" type="radio"
-                                               @if($item->media_type_id ==1)checked @endif value="1">
-
-                                        <input required id="media_type" name="media_type_id" type="radio"
-                                               @if($item->media_type_id ==2)checked @endif value="2">
-                                        <label for="media_type">Video</label>
-                                    </div>
-
-                                    <div class="form-group form-md-line-input">
-                                        <input  id="media" name="media" type="file" class="form-control">
-                                        <label for="media">Media File</label>
+                                        <input required type="time" name="time_to" class="form-control"
+                                               id="form_control_1" value="{{date('h:i A',$item->time_to)}}"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg">time to</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 

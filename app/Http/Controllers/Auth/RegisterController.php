@@ -64,6 +64,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'middle_name' => $data['middle_name'],
+            'last_name' => $data['last_name'],
+            'user_name' => $data['user_name'],
+            'inside_password' => Hash::make($data['inside_password']),
+            'state_id' => $data['state_id'],
+            'city' => $data['city'],
+            'national_id' => $data['national_id'],
+            'birth_date' => strtotime($data['birth_date']),
+            'beneficiary' => $data['beneficiary'],
+            'unique_id' => str_limit(Hash::make(rand(99999, 999999)), 10, 11),
+            'parent_id' => $data['beneficiary'],
+            'position' => $data['position'],
+            'phone' => $data['phone'],
+            'e_pin_balance' => 0,
+            'e_money_balance' => 0,
+            'user_status_id' => 1,
+        ]);
+        User_address::create(['user_id' => $user->id, 'address' => $data['address']]);
+        return $user;
+    }
+
+    protected function create2(array $data)
+    {
         $parent = User::where('unique_id', $data['parent_id'])->first();
         if ($parent) {
             $user = User::create([
@@ -93,4 +120,5 @@ class RegisterController extends Controller
             return redirect()->back();
         }
     }
+
 }

@@ -35,7 +35,7 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->name}} </td>
+                                    <td>{{$item->name_en}} </td>
 
                                     <td>
                                         <div class="col-sm-12">

@@ -85,4 +85,11 @@ class UsersController extends Controller
         $items = $items->paginate(10);
         return view('admin.users.index', compact('items'));
     }
+    public function qualified($id)
+    {
+        $item = User::find($id);
+        $item->qualified = !$item->qualified;
+        $item->save();
+        return redirect('/admin/users');
+    }
 }

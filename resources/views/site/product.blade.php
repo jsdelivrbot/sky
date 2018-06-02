@@ -13,12 +13,12 @@
             <ol class="breadcrumb bread-primary ">
                 <a href="#" class="btn btn-primary">Path</a>
                 @if($product->category)
-                    <li><a href="#">{{$product->category->name}}</a></li>
+                    <li><a href="#">{{$product->category->name_en}}</a></li>
                 @endif
                 @if($product->sub_category)
-                    <li><a href="#">{{$product->sub_category->name}}</a></li>
+                    <li><a href="#">{{$product->sub_category->name_en}}</a></li>
                 @endif
-                <li class="active">{{$product->name}}</li>
+                <li class="active">{{$product->name_en}}</li>
 
             </ol>
         </div>
@@ -41,7 +41,16 @@
                                             <div class="carousel slide" id="myCarousel">
                                                 <!-- Carousel items -->
                                                 <div class="carousel-inner" data-lightbox="gallery">
-                                                    @php $i =0 @endphp
+                                                    @php $i =1 @endphp
+                                                    <div class="active item slide"
+                                                         data-slide-number="0"
+                                                         data-thumb="img/product1.jpg">
+                                                        <a href="{{$product->main_image}}"
+                                                           title="Pink Printed Dress - Front View"
+                                                           data-lightbox="gallery-item"><img
+                                                                    src="{{$product->main_image}}">
+                                                        </a>
+                                                    </div>
                                                     @foreach($images as $image)
                                                         <div class="@if($i ==0) active @endif item slide"
                                                              data-slide-number="{{$i}}"
@@ -51,7 +60,6 @@
                                                                data-lightbox="gallery-item"><img
                                                                         src="{{$image->image}}">
                                                             </a>
-
                                                         </div>
                                                         @php $i++ @endphp
                                                     @endforeach
@@ -85,7 +93,7 @@
                             </div>
 
                             <div class="col-md-7 col-xs-12 details">
-                                <h3>{{$product->name}}</h3>
+                                <h3>{{$product->name_en}}</h3>
                                 <div class="prc1 col-md-7 no-pd col-xs-12">
                                     @if($product->offer)
                                         <div class="col-md-6 col-sm-6 no-pd col-xs-12 ">
@@ -119,7 +127,7 @@
                                     </div>
                                 @endif
                                 <div class="col-md-6 col-xs-12 modq no-pd ">
-                                    <h4>Type: <span>{{$product->product_type->name}}</span></h4>
+                                    <h4>Type: <span>{{$product->product_type->name_en}}</span></h4>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class='rating-stars'>
@@ -202,11 +210,11 @@
 
                         <form method="post" action="{{url("order")}}">
                             @csrf
-                            <input id="product_id_input" type="hidden" name="product_id" value="">
+                            <input id="product_id_input" type="hidden" name_en="product_id" value="">
                             <div class="clearfix"></div>
                             <div class="form-group nw-pd">
                                 @if(auth()->user()->addresses)
-                                    <select class="form-control" name="address_select">
+                                    <select class="form-control" name_en="address_select">
                                         @foreach(auth()->user()->addresses as $address)
                                             <option value="{{$address->address}}">{{$address->address}}</option>
                                         @endforeach
@@ -217,12 +225,12 @@
 
                             <div class="form-group nw-pd">
                                 OR
-                                <input name="address_input" type="text" class="form-control"
+                                <input name_en="address_input" type="text" class="form-control"
                                        placeholder="address">
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group nw-pd">
-                                <input required name="mobile" type="text" class="form-control"
+                                <input required name_en="mobile" type="text" class="form-control"
                                        placeholder="mobile">
                             </div>
                             <div class="clearfix"></div>

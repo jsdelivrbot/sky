@@ -66,7 +66,7 @@
 
                             <label>
                                 <input onchange="submit()" value="3" type="radio" name="product_type_id"
-                                       @if(session('product_type_id') == '3') checked @endif >
+                                       @if(session('product_type_id') == '0') checked @endif >
                                 <span class="label-text">All</span>
                             </label>
                             <br/>
@@ -81,6 +81,13 @@
                                 <input value="2" onchange="submit()" type="radio" name="product_type_id"
                                        @if(session('product_type_id') == '2') checked @endif >
                                 <span class="label-text">Premium Products</span>
+
+                            </label>
+                            <br/>
+                            <label>
+                                <input value="3" onchange="submit()" type="radio" name="product_type_id"
+                                       @if(session('product_type_id') == '3') checked @endif >
+                                <span class="label-text">E-Learning</span>
 
                             </label>
 
@@ -98,7 +105,7 @@
                                                @if(session('category_id'))
                                                @if(in_array($category->id,session('category_id'))) checked @endif
                                                 @endif>
-                                        <span class="label-text">{{$category->name}}</span>
+                                        <span class="label-text">{{$category->name_en}}</span>
                                     </label>
                                     <br/>
                                 @endforeach
@@ -120,7 +127,7 @@
                                                    @if(session('sub_category_id'))
                                                    @if(in_array($sub_category->id,session('sub_category_id'))) checked @endif
                                                     @endif>
-                                            <span class="label-text">{{$sub_category->name}}</span>
+                                            <span class="label-text">{{$sub_category->name_en}}</span>
                                         </label>
                                         <br/>
                                     @endforeach
@@ -171,13 +178,16 @@
 
                             @foreach($products as $product)
                                 <div class="element element-in">
-                                    <h3><a href="{{url("products/$product->id")}}">{{$product->name}}</a></h3>
-                                    <a href="{{url("products/$product->id")}}"><img width="240" height="180"
-                                                                                    src="{{$product->main_image}}"
-                                                                                    class="img-responsive"/></a>
-                                    <p style="word-break: break-word">
-                                        {{substr($product->desc,0,120)}}
-                                    </p>
+                                    <h3 style="height: 50px; overflow-y: hidden"><a
+                                                href="{{url("products/$product->id")}}">{{$product->name_en}}</a></h3>
+                                    <a href="{{url("products/$product->id")}}">
+                                        <img width="240" height="180"
+                                             src="{{url('/storage/app/public/images/products/').'/'.$product->main_image}}"
+                                             class="img-responsive"/>
+                                    </a>
+                                    <div style="word-break: break-word;height: 50px;overflow-y: hidden">
+                                        {!! $product->desc_en !!}
+                                    </div>
                                     <a href="{{url("products/$product->id")}}"><strong>More..</strong></a>
                                     <h5 class="price">
                                         @if($product->offer)
@@ -187,33 +197,33 @@
                                         @endif
                                     </h5>
                                     @guest
-                                    <a href="#squarespaceModal" data-toggle="modal"
-                                       class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
+                                        <a href="#squarespaceModal" data-toggle="modal"
+                                           class="btn btn-form nwbtn add "><span class="cart"></span> Order</a>
                                     @endguest
                                     @auth
-                                    @if(auth()->user()->qualified ==1)
+                                        @if(auth()->user()->qualified ==1)
 
-                                        @if($product->product_type_id == 1)
-                                            <label class="btn btn-form nwbtn add gray_btn"><span
-                                                        class="cart"></span>
-                                                Order</label>
-                                        @else
-                                            <a href="#squarespaceModal-order" data-toggle="modal"
-                                               data-product_id="{{$product->id}}"
-                                               class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
-                                        @endif
+                                            @if($product->product_type_id == 1)
+                                                <label class="btn btn-form nwbtn add gray_btn"><span
+                                                            class="cart"></span>
+                                                    Order</label>
+                                            @else
+                                                <a href="#squarespaceModal-order" data-toggle="modal"
+                                                   data-product_id="{{$product->id}}"
+                                                   class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                            @endif
 
-                                    @else
-                                        @if($product->product_type_id == 1)
-                                            <a href="#squarespaceModal-order" data-toggle="modal"
-                                               data-product_id="{{$product->id}}"
-                                               class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
                                         @else
-                                            <label class="btn btn-form nwbtn add gray_btn"><span
-                                                        class="cart"></span>
-                                                Order</label>
+                                            @if($product->product_type_id == 1 or $product->product_type_id == 3)
+                                                <a href="#squarespaceModal-order" data-toggle="modal"
+                                                   data-product_id="{{$product->id}}"
+                                                   class="btn btn-form nwbtn add"><span class="cart"></span> Order</a>
+                                            @else
+                                                <label class="btn btn-form nwbtn add gray_btn"><span
+                                                            class="cart"></span>
+                                                    Order</label>
+                                            @endif
                                         @endif
-                                    @endif
                                     @endauth
                                 </div>
                             @endforeach
@@ -237,7 +247,7 @@
         });
         @if(session('order_insufficient_money'))
 
-            $.notify("home");
+        $.notify("home");
 
         @php
             session()->forget('order_insufficient_money');
@@ -248,56 +258,56 @@
     </script>
 @endsection
 @auth
-<div class="modal fade" id="squarespaceModal-order" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content mymodal">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            <div class="modal-body ">
-                <div class="wrapper">
+    <div class="modal fade" id="squarespaceModal-order" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content mymodal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <div class="modal-body ">
+                    <div class="wrapper">
 
-                    <section id="first-tab-group2" class="tabgroup2">
-
-
-                        <form method="post" action="{{url("order")}}">
-                            @csrf
-                            <input id="product_id_input" type="hidden" name="product_id" value="">
-                            <div class="clearfix"></div>
-                            <div class="form-group nw-pd">
-                                @if(auth()->user()->addresses)
-                                    <select class="form-control" name="address_select">
-                                        @foreach(auth()->user()->addresses as $address)
-                                            <option value="{{$address->address}}">{{$address->address}}</option>
-                                        @endforeach
-                                    </select>
-                                @endif
-                            </div>
-                            <div class="clearfix"></div>
-
-                            <div class="form-group nw-pd">
-                                OR
-                                <input name="address_input" type="text" class="form-control"
-                                       placeholder="address">
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="form-group nw-pd">
-                                <input required name="mobile" type="text" class="form-control"
-                                       placeholder="mobile">
-                            </div>
-                            <div class="clearfix"></div>
-                            <button type="submit" class="btn nwbtn">Order</button>
-
-                        </form>
+                        <section id="first-tab-group2" class="tabgroup2">
 
 
-                    </section>
+                            <form method="post" action="{{url("order")}}">
+                                @csrf
+                                <input id="product_id_input" type="hidden" name="product_id" value="">
+                                <div class="clearfix"></div>
+                                <div class="form-group nw-pd">
+                                    @if(auth()->user()->addresses)
+                                        <select class="form-control" name="address_select">
+                                            @foreach(auth()->user()->addresses as $address)
+                                                <option value="{{$address->address}}">{{$address->address}}</option>
+                                            @endforeach
+                                        </select>
+                                    @endif
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="form-group nw-pd">
+                                    OR
+                                    <input name="address_input" type="text" class="form-control"
+                                           placeholder="address">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group nw-pd">
+                                    <input required name="mobile" type="text" class="form-control"
+                                           placeholder="mobile">
+                                </div>
+                                <div class="clearfix"></div>
+                                <button type="submit" class="btn nwbtn">Order</button>
+
+                            </form>
+
+
+                        </section>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
     </div>
-</div>
 @endauth

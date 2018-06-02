@@ -79,8 +79,8 @@
                 <div id="owl-example" class="owl-carousel">
                     @foreach($founders as $founder)
                         <div class="item">
-                            <img src="{{$founder->image}}" alt="{{$founder->name}}">
-                            <h4>{{$founder->name}}</h4>
+                            <img src="{{$founder->image}}" alt="{{$founder->name_en}}">
+                            <h4>{{$founder->name_en}}</h4>
                             <h5>{{$founder->position}} </h5>
                         </div>
                     @endforeach

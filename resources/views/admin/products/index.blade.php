@@ -54,7 +54,7 @@
                         <div class="form-group form-md-line-input col-xs-3">
                             <div class="col-xs-6">
                                 <div class="checkbox ">
-                                    <label><input name="limit" type="checkbox" value="1" >reach Limit</label>
+                                    <label><input name="limit" type="checkbox" value="1">reach Limit</label>
                                 </div>
                             </div>
 
@@ -78,6 +78,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Main Image</th>
+                                <th>Video</th>
                                 <th>category</th>
                                 <th>Name</th>
                                 <th>desc</th>
@@ -97,29 +98,38 @@
                                     <td>{{$item->id}}</td>
                                     <td><img src="{{$item->main_image}}" width="100px" height="100px"></td>
                                     <td>
+                                        <video class="abt-vid" controls autoplay>
+                                            <source src="{{$item->video}}" type="video/mp4">
+                                        </video>
+                                    </td>
+                                    <td>
                                         @if($item->category)
-                                            {{$item->category->name}} ->
+                                            {{$item->category->name_en}} ->
                                             @if($item->sub_category)
-                                                {{$item->sub_category->name}}
+                                                {{$item->sub_category->name_en}}
                                             @endif
 
                                         @endif
                                     </td>
-                                    <td>{{$item->name}} </td>
-                                    <td>{{str_limit($item->desc,100)}} </td>
+                                    <td>{{$item->name_en}} </td>
+                                    <td>{{str_limit($item->desc_en,100)}} </td>
                                     <td>{{$item->price}}  </td>
                                     <td>
                                         @if($item->product_type_id ==1)
                                             {{$item->shipping_fees}}
+                                        @else
+                                            -
                                         @endif
                                     </td>
                                     <td>
                                         @if($item->product_type_id ==2)
                                             {{$item->commission}}
+                                        @else
+                                            -
                                         @endif
                                     </td>
                                     <td>{{$item->quantity}} </td>
-                                    <td>{{$item->product_type->name}} </td>
+                                    <td>{{$item->product_type->name_en}} </td>
                                     <td>
                                         <form method="post"
                                               action="{{url("admin/users/$item->id/qualified")}}">
@@ -167,10 +177,10 @@
 
                             </tbody>
                         </table>
-                        <div class="text-center page-full-width">
-                            {{$items->links()}}
-                        </div>
 
+                    </div>
+                    <div class="text-center page-full-width">
+                        {{$items->links()}}
                     </div>
                 </div>
             </div>

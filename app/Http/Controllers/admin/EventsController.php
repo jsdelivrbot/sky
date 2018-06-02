@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\City;
+use App\Country;
 use App\Event;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,38 +19,45 @@ class EventsController extends Controller
 
     public function create()
     {
-        return view('admin.events.create');
+        $cities = City::all();
+        $countries = Country::all();
+        return view('admin.events.create', compact('cities', 'countries'));
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
-        if ($request->media)
-            $data['media'] = $this->store_image($request->media);
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
+        $data['launch_date']=strtotime($request->launch_date);
+        $data['time_from']=strtotime($request->time_from);
+        $data['time_to']=strtotime($request->time_to);
         Event::create($data);
-        return redirect('/admin/Event');
+        return redirect('/admin/events');
     }
 
 
     public function show($id)
     {
-        return redirect('/admin/Event');
+        return redirect('/admin/events');
     }
 
     public function edit($id)
     {
         $item = Event::find($id);
-        return view('admin.events.edit', compact('item'));
+        $cities = City::all();
+        $countries = Country::all();
+        return view('admin.events.edit', compact('item', 'cities','countries'));
     }
 
     public function update(Request $request, $id)
     {
         $data = $request->all();
         $item = Event::find($id);
-        if ($request->media)
-            $data['media'] = $this->store_image($request->media);
+        if ($request->image)
+            $data['image'] = $this->store_image($request->image);
         $item->update($data);
-        return redirect('/admin/Event');
+        return redirect('/admin/events');
     }
 
 
@@ -56,7 +65,7 @@ class EventsController extends Controller
     {
         $item = Event::find($id);
         $item->delete();
-        return redirect('/admin/Event');
+        return redirect('/admin/events');
     }
 
 }

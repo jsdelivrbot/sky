@@ -13,7 +13,8 @@
                     </div>
                     <div class="actions">
                         <div class="btn-group">
-                            <a class="btn dark btn-outline btn-circle btn-sm" href="{{url('/admin/categories/create')}}">
+                            <a class="btn dark btn-outline btn-circle btn-sm"
+                               href="{{url('/admin/categories/create')}}">
                                 Add
                             </a>
                         </div>
@@ -26,7 +27,9 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Arabic Name</th>
+                                <th>English Name</th>
                                 <th></th>
 
                             </tr>
@@ -35,8 +38,9 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->name}} </td>
-
+                                    <td><img src="{{$item->image}}" width="100px" height="100px"></td>
+                                    <td>{{$item->name_ar}}</td>
+                                    <td>{{$item->name_en}}</td>
                                     <td>
                                         <div class="col-sm-12">
                                             <a href="{{url("admin/categories/$item->id/edit")}}"

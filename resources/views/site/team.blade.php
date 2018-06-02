@@ -76,7 +76,7 @@
                                             <img src="https://pbs.twimg.com/profile_images/762654833455366144/QqQhkuK5.jpg"
                                                  alt="">
                                             <p class="name">
-                                                {{$user->name}}
+                                                {{$user->name_en}}
                                             </p>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                                             <img src="https://randomuser.me/api/portraits/men/3.jpg"
                                                                  alt="">
                                                             <p class="name">
-                                                                {{$user->LeftDownLine->name}}
+                                                                {{$user->LeftDownLine->name_en}}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -151,7 +151,7 @@
                                                             <img src="https://randomuser.me/api/portraits/men/3.jpg"
                                                                  alt="">
                                                             <p class="name">
-                                                                {{$user->RightDownLine->name}}
+                                                                {{$user->RightDownLine->name_en}}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -211,7 +211,7 @@
                                                             <img src="https://randomuser.me/api/portraits/men/3.jpg"
                                                                  alt="">
                                                             <p class="name">
-                                                                {{$user->LeftDownLine->name}}
+                                                                {{$user->LeftDownLine->name_en}}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -264,7 +264,7 @@
                                                             <img src="https://randomuser.me/api/portraits/men/3.jpg"
                                                                  alt="">
                                                             <p class="name">
-                                                                {{$user->RightDownLine->name}}
+                                                                {{$user->RightDownLine->name_en}}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -334,7 +334,7 @@
                                             name="country">
                                         <option value="0" disabled selected>Country</option>
                                         @foreach($countries as $country)
-                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            <option value="{{$country->id}}">{{$country->name_en}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -345,7 +345,7 @@
 
                                         <option value="0" disabled selected>State</option>
                                         @foreach($countries as $country)
-                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            <option value="{{$country->id}}">{{$country->name_en}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -470,7 +470,7 @@
                                 '<div class="hv-item-parent">' +
                                 '<div class="person" data-unique_id="' + data.LeftDownLine.unique_id + '" >' +
                                 '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
-                                '<p class="name">' + data.LeftDownLine.name + '</p>' +
+                                '<p class="name">' + data.LeftDownLine.name_en + '</p>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>' +
@@ -481,7 +481,7 @@
                             '<div class="hv-item-parent">' +
                             '<div class="person"  data-unique_id="' + data.RightDownLine.unique_id + '" >' +
                             '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
-                            '<p class="name">' + data.RightDownLine.name + '</p>' +
+                            '<p class="name">' + data.RightDownLine.name_en + '</p>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -511,7 +511,7 @@
                                 '<div class="hv-item-parent">' +
                                 '<div class="person"  data-unique_id="' + data.RightDownLine.unique_id + '" >' +
                                 '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
-                                '<p class="name">' + data.RightDownLine.name + '</p>' +
+                                '<p class="name">' + data.RightDownLine.name_en + '</p>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>' +
@@ -528,7 +528,7 @@
                                     '<div class="hv-item-parent">' +
                                     '<div class="person" data-unique_id="' + data.LeftDownLine.unique_id + '" >' +
                                     '<img src="https://randomuser.me/api/portraits/men/3.jpg">' +
-                                    '<p class="name">' + data.LeftDownLine.name + '</p>' +
+                                    '<p class="name">' + data.LeftDownLine.name_en + '</p>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +

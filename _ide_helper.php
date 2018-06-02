@@ -1098,7 +1098,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * An alias function name for make().
+         * An alias function name_en for make().
          *
          * @param string $abstract
          * @param array $parameters
@@ -1458,7 +1458,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard 
          * @static 
          */ 
-        public static function guard($name = null)
+        public static function guard($name_en = null)
         {
             return \Illuminate\Auth\AuthManager::guard($name);
         }
@@ -1779,7 +1779,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the name of the cookie used to store the "recaller".
+         * Get the name_en of the cookie used to store the "recaller".
          *
          * @return string 
          * @static 
@@ -2303,7 +2303,7 @@ namespace Illuminate\Support\Facades {
          * @return mixed 
          * @static 
          */ 
-        public static function driver($name = null)
+        public static function driver($name_en = null)
         {
             return \Illuminate\Broadcasting\BroadcastManager::driver($name);
         }
@@ -2445,7 +2445,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Contracts\Cache\Repository 
          * @static 
          */ 
-        public static function store($name = null)
+        public static function store($name_en = null)
         {
             return \Illuminate\Cache\CacheManager::store($name);
         }
@@ -3364,7 +3364,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Database\Connection 
          * @static 
          */ 
-        public static function connection($name = null)
+        public static function connection($name_en = null)
         {
             return \Illuminate\Database\DatabaseManager::connection($name);
         }
@@ -3376,7 +3376,7 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function purge($name = null)
+        public static function purge($name_en = null)
         {
             \Illuminate\Database\DatabaseManager::purge($name);
         }
@@ -3388,7 +3388,7 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function disconnect($name = null)
+        public static function disconnect($name_en = null)
         {
             \Illuminate\Database\DatabaseManager::disconnect($name);
         }
@@ -3400,7 +3400,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Database\Connection 
          * @static 
          */ 
-        public static function reconnect($name = null)
+        public static function reconnect($name_en = null)
         {
             return \Illuminate\Database\DatabaseManager::reconnect($name);
         }
@@ -4104,7 +4104,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the name of the connected database.
+         * Get the name_en of the connected database.
          *
          * @return string 
          * @static 
@@ -4116,7 +4116,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Set the name of the connected database.
+         * Set the name_en of the connected database.
          *
          * @param string $database
          * @return string 
@@ -4622,7 +4622,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Extract the file name from a file path.
+         * Extract the file name_en from a file path.
          *
          * @param string $path
          * @return string 
@@ -4634,7 +4634,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Extract the trailing name component from a file path.
+         * Extract the trailing name_en component from a file path.
          *
          * @param string $path
          * @return string 
@@ -5786,7 +5786,7 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function alwaysFrom($address, $name = null)
+        public static function alwaysFrom($address, $name_en = null)
         {
             \Illuminate\Mail\Mailer::alwaysFrom($address, $name);
         }
@@ -5799,7 +5799,7 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function alwaysReplyTo($address, $name = null)
+        public static function alwaysReplyTo($address, $name_en = null)
         {
             \Illuminate\Mail\Mailer::alwaysReplyTo($address, $name);
         }
@@ -5812,7 +5812,7 @@ namespace Illuminate\Support\Facades {
          * @return void 
          * @static 
          */ 
-        public static function alwaysTo($address, $name = null)
+        public static function alwaysTo($address, $name_en = null)
         {
             \Illuminate\Mail\Mailer::alwaysTo($address, $name);
         }
@@ -6109,7 +6109,7 @@ namespace Illuminate\Support\Facades {
          * @return mixed 
          * @static 
          */ 
-        public static function channel($name = null)
+        public static function channel($name_en = null)
         {
             return \Illuminate\Notifications\ChannelManager::channel($name);
         }
@@ -6198,7 +6198,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Contracts\Auth\PasswordBroker 
          * @static 
          */ 
-        public static function broker($name = null)
+        public static function broker($name_en = null)
         {
             return \Illuminate\Auth\Passwords\PasswordBrokerManager::broker($name);
         }
@@ -6309,7 +6309,7 @@ namespace Illuminate\Support\Facades {
          * @return bool 
          * @static 
          */ 
-        public static function connected($name = null)
+        public static function connected($name_en = null)
         {
             return \Illuminate\Queue\QueueManager::connected($name);
         }
@@ -6321,7 +6321,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Contracts\Queue\Queue 
          * @static 
          */ 
-        public static function connection($name = null)
+        public static function connection($name_en = null)
         {
             return \Illuminate\Queue\QueueManager::connection($name);
         }
@@ -6353,7 +6353,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the name of the default queue connection.
+         * Get the name_en of the default queue connection.
          *
          * @return string 
          * @static 
@@ -6364,7 +6364,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Set the name of the default queue connection.
+         * Set the name_en of the default queue connection.
          *
          * @param string $name
          * @return void 
@@ -6376,7 +6376,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the full name for the given connection.
+         * Get the full name_en for the given connection.
          *
          * @param string $connection
          * @return string 
@@ -6526,7 +6526,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the connection name for the queue.
+         * Get the connection name_en for the queue.
          *
          * @return string 
          * @static 
@@ -6538,7 +6538,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Set the connection name for the queue.
+         * Set the connection name_en for the queue.
          *
          * @param string $name
          * @return $this 
@@ -6910,7 +6910,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Determine if the route name matches a given pattern.
+         * Determine if the route name_en matches a given pattern.
          *
          * @param mixed $patterns
          * @return bool 
@@ -7622,7 +7622,7 @@ namespace Illuminate\Support\Facades {
          * The base URL never ends with a /.
          * 
          * This is similar to getBasePath(), except that it also includes the
-         * script filename (e.g. index.php) if one exists.
+         * script filename_en (e.g. index.php) if one exists.
          *
          * @return string The raw URL (i.e. not urldecoded)
          * @static 
@@ -7689,7 +7689,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Gets the user info.
          *
-         * @return string A user name and, optionally, scheme-specific information about how to gain authorization to access the server
+         * @return string A user name_en and, optionally, scheme-specific information about how to gain authorization to access the server
          * @static 
          */ 
         public static function getUserInfo()
@@ -7701,7 +7701,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Returns the HTTP host being requested.
          * 
-         * The port name will be appended to the host if it's non-standard.
+         * The port name_en will be appended to the host if it's non-standard.
          *
          * @return string 
          * @static 
@@ -7825,13 +7825,13 @@ namespace Illuminate\Support\Facades {
         /**
          * Returns the host name.
          * 
-         * This method can read the client host name from the "X-Forwarded-Host" header
+         * This method can read the client host name_en from the "X-Forwarded-Host" header
          * when trusted proxies were set via "setTrustedProxies()".
          * 
          * The "X-Forwarded-Host" header must contain the client host name.
          *
          * @return string 
-         * @throws SuspiciousOperationException when the host name is invalid or not trusted
+         * @throws SuspiciousOperationException when the host name_en is invalid or not trusted
          * @static 
          */ 
         public static function getHost()
@@ -8804,7 +8804,7 @@ namespace Illuminate\Support\Facades {
          * @return \Symfony\Component\HttpFoundation\StreamedResponse 
          * @static 
          */ 
-        public static function streamDownload($callback, $name = null, $headers = array(), $disposition = 'attachment')
+        public static function streamDownload($callback, $name_en = null, $headers = array(), $disposition = 'attachment')
         {
             return \Illuminate\Routing\ResponseFactory::streamDownload($callback, $name, $headers, $disposition);
         }
@@ -8819,7 +8819,7 @@ namespace Illuminate\Support\Facades {
          * @return \Symfony\Component\HttpFoundation\BinaryFileResponse 
          * @static 
          */ 
-        public static function download($file, $name = null, $headers = array(), $disposition = 'attachment')
+        public static function download($file, $name_en = null, $headers = array(), $disposition = 'attachment')
         {
             return \Illuminate\Routing\ResponseFactory::download($file, $name, $headers, $disposition);
         }
@@ -9308,7 +9308,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Register a short-hand name for a middleware.
+         * Register a short-hand name_en for a middleware.
          *
          * @param string $name
          * @param string $class
@@ -9321,7 +9321,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Check if a middlewareGroup with the given name exists.
+         * Check if a middlewareGroup with the given name_en exists.
          *
          * @param string $name
          * @return bool 
@@ -9531,7 +9531,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Check if a route with the given name exists.
+         * Check if a route with the given name_en exists.
          *
          * @param string $name
          * @return bool 
@@ -9882,7 +9882,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Rename a table on the schema.
+         * Rename_en a table on the schema.
          *
          * @param string $from
          * @param string $to
@@ -10373,7 +10373,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the name of the session.
+         * Get the name_en of the session.
          *
          * @return string 
          * @static 
@@ -10384,7 +10384,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Set the name of the session.
+         * Set the name_en of the session.
          *
          * @param string $name
          * @return void 
@@ -10532,7 +10532,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */ 
-        public static function drive($name = null)
+        public static function drive($name_en = null)
         {
             return \Illuminate\Filesystem\FilesystemManager::drive($name);
         }
@@ -10544,7 +10544,7 @@ namespace Illuminate\Support\Facades {
          * @return \Illuminate\Filesystem\FilesystemAdapter 
          * @static 
          */ 
-        public static function disk($name = null)
+        public static function disk($name_en = null)
         {
             return \Illuminate\Filesystem\FilesystemManager::disk($name);
         }
@@ -10739,7 +10739,7 @@ namespace Illuminate\Support\Facades {
          * @return \Symfony\Component\HttpFoundation\StreamedResponse 
          * @static 
          */ 
-        public static function response($path, $name = null, $headers = array(), $disposition = 'inline')
+        public static function response($path, $name_en = null, $headers = array(), $disposition = 'inline')
         {
             return \Illuminate\Filesystem\FilesystemAdapter::response($path, $name, $headers, $disposition);
         }
@@ -10753,7 +10753,7 @@ namespace Illuminate\Support\Facades {
          * @return \Symfony\Component\HttpFoundation\StreamedResponse 
          * @static 
          */ 
-        public static function download($path, $name = null, $headers = array())
+        public static function download($path, $name_en = null, $headers = array())
         {
             return \Illuminate\Filesystem\FilesystemAdapter::download($path, $name, $headers);
         }
@@ -12783,7 +12783,7 @@ namespace  {
              * @throws \InvalidArgumentException
              * @static 
              */ 
-            public static function paginate($perPage = null, $columns = array(), $pageName = 'page', $page = null)
+            public static function paginate($perPage = null, $columns = array(), $pagename_en = 'page', $page = null)
             {    
                 return \Illuminate\Database\Eloquent\Builder::paginate($perPage, $columns, $pageName, $page);
             }
@@ -12798,7 +12798,7 @@ namespace  {
              * @return \Illuminate\Contracts\Pagination\Paginator 
              * @static 
              */ 
-            public static function simplePaginate($perPage = null, $columns = array(), $pageName = 'page', $page = null)
+            public static function simplePaginate($perPage = null, $columns = array(), $pagename_en = 'page', $page = null)
             {    
                 return \Illuminate\Database\Eloquent\Builder::simplePaginate($perPage, $columns, $pageName, $page);
             }

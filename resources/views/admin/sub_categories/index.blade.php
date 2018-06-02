@@ -26,7 +26,9 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Arabic Name</th>
+                                <th>English Name</th>
                                 <th></th>
 
                             </tr>
@@ -35,7 +37,9 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->name}} </td>
+                                    <td><img src="{{$item->image}}" width="100px" height="100px"></td>
+                                    <td>{{$item->name_ar}}</td>
+                                    <td>{{$item->name_en}}</td>
 
                                     <td>
                                         <div class="col-sm-12">
@@ -63,10 +67,11 @@
 
                             </tbody>
                         </table>
-                        <div class="text-center page-full-width">
-                            {{$items->links()}}
-                        </div>
 
+                    </div>
+
+                    <div class="text-center page-full-width">
+                        {{$items->links()}}
                     </div>
                 </div>
             </div>

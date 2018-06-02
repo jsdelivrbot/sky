@@ -38,48 +38,72 @@
                                 <div class="form-body">
 
                                     <div class="form-group form-md-line-input">
-                                        <input required type="text" name="title_ar" class="form-control"
+                                        <input required type="text" name="name_ar" class="form-control"
                                                id="form_control_1"
-                                               placeholder="name ">
-                                        <label for="form_control_1 input-lg"> Title arabic</label>
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg"> name arabic</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <input required type="text" name="title_en" class="form-control"
+                                        <input required type="text" name="name_en" class="form-control"
                                                id="form_control_1"
-                                               placeholder="name ">
-                                        <label for="form_control_1 input-lg"> Title english</label>
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg"> name english</label>
+                                        <span class="help-block">Writing...</span>
+                                    </div>
+                                    <div class="form-group form-md-line-input">
+                                        <select required id="country_id" name="country_id" class="form-control">
+                                            @foreach($countries as $country)
+                                                <option value="{{$country->id}}">{{$country->name_en}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="country_id"> Category </label>
+                                    </div>
+                                    <div class="form-group form-md-line-input">
+                                        <select id="city_id" name="city_id" class="form-control">
+                                            @foreach($cities as $city)
+                                                <option value="{{$city->id}}">{{$city->name_en}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="city_id">city</label>
+                                    </div>
+
+                                    <div class="form-group form-md-line-input">
+                                        <input required type="text" name="address" class="form-control"
+                                               id="address" placeholder="name_en ">
+                                        <label for="address">address</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_en" name="text_en" class="form-control"></textarea>
-                                        <label for="text_en"> Text english</label>
+                                        <input required type="date" name="launch_date" class="form-control"
+                                               id="form_control_1"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg"> launch date</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <textarea required id="text_ar" name="text_ar" class="form-control"></textarea>
-                                        <label for="text_ar"> Text english</label>
+                                        <input required type="time" name="time_from" class="form-control"
+                                               id="form_control_1"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg">time from</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
                                     <div class="form-group form-md-line-input">
-                                        <label for="media_type">Image</label>
-                                        <input required id="media_type" name="media_type_id" type="radio" checked value="1" >
-
-                                        <input required id="media_type" name="media_type_id" type="radio"  value="2" >
-                                        <label for="media_type">Video</label>
-                                    </div>
-
-                                    <div class="form-group form-md-line-input">
-                                        <input required id="media" name="media" type="file" class="form-control">
-                                        <label for="media">Media File</label>
+                                        <input required type="time" name="time_to" class="form-control"
+                                               id="form_control_1"
+                                               placeholder="name_en ">
+                                        <label for="form_control_1 input-lg">time to</label>
                                         <span class="help-block">Writing...</span>
                                     </div>
 
-
+                                    <div class="form-group form-md-line-input">
+                                        <input required id="image" name="image" type="file" class="form-control">
+                                        <label for="image">image </label>
+                                    </div>
                                     <button type="submit" class="btn blue">Add</button>
                                 </div>
 
