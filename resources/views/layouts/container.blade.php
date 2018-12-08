@@ -533,7 +533,7 @@
 <script src="{{asset("assets/")}}/js/register.js"></script>
 <script src="{{asset("assets/")}}/js/ajax.js"></script>
 <script src="{{asset("assets/")}}/js/style.js"></script>
-<script src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/notifyjs/notifyjs/dist/notify.js"></script>
 
 
 <script>
